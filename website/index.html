@@ -17,11 +17,11 @@
 <meta property="og:url" content="https://praxisminds.com/">
 <meta property="og:image" content="https://praxisminds.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#2234B5">
+<meta name="theme-color" content="#0D5C55">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Martian+Mono:wght@400;500;700&family=Nanum+Pen+Script&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Plus+Jakarta+Sans:wght@400..800&display=swap">
 <link rel="stylesheet" href="assets/styles.css">
 <script type="application/ld+json">
 {
@@ -36,58 +36,86 @@
 </script>
 </head>
 <body>
+<!-- Icons: one stroke style, used with <svg class="ic"><use href="#i-name"/></svg> -->
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 7.5h.01"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></symbol>
+  <symbol id="i-blocks" viewBox="0 0 24 24"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><path d="M17.25 14v6.5"/><path d="M14 17.25h6.5"/></symbol>
+  <symbol id="i-cap" viewBox="0 0 24 24"><path d="M22 9.5 12 5 2 9.5 12 14z"/><path d="M6 11.5V16c0 1.4 2.7 3 6 3s6-1.6 6-3v-4.5"/><path d="M22 9.5V15"/></symbol>
+  <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6"/><path d="M9 17h4"/></symbol>
+  <symbol id="i-inbox" viewBox="0 0 24 24"><path d="M3 13h5l1.5 2.5h5L16 13h5"/><path d="M5.5 5h13L21 13v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5z"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M3 5h6a3 3 0 0 1 3 3v12a2.5 2.5 0 0 0-2.5-2.5H3z"/><path d="M21 5h-6a3 3 0 0 0-3 3v12a2.5 2.5 0 0 1 2.5-2.5H21z"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M8 17v-4"/><path d="M13 17V9"/><path d="M18 17V6"/></symbol>
+  <symbol id="i-receipt" viewBox="0 0 24 24"><path d="M5 3h14v18l-2.5-1.5L14 21l-2-1.5-2 1.5-2.5-1.5L5 21z"/><path d="M9 8h6"/><path d="M9 12h6"/><path d="M9 16h3"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></symbol>
+  <symbol id="i-trend" viewBox="0 0 24 24"><path d="m3 17 6-6 4 4 8-8"/><path d="M15 7h6v6"/></symbol>
+  <symbol id="i-present" viewBox="0 0 24 24"><path d="M2 4h20"/><path d="M4 4v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4"/><path d="m8 21 4-5 4 5"/></symbol>
+  <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/></symbol>
+  <symbol id="i-megaphone" viewBox="0 0 24 24"><path d="M3 10v4a1 1 0 0 0 1 1h2l6 4V5L6 9H4a1 1 0 0 0-1 1z"/><path d="M16 9a4 4 0 0 1 0 6"/><path d="M19 6a8 8 0 0 1 0 12"/></symbol>
+  <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-3.6 10.8c.7.5 1.1 1.3 1.1 2.2h5c0-.9.4-1.7 1.1-2.2A6 6 0 0 0 12 3z"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M15.5 4.6a3.5 3.5 0 0 1 0 6.8"/><path d="M21.5 20a6.5 6.5 0 0 0-4-6"/></symbol>
+  <symbol id="i-flow" viewBox="0 0 24 24"><rect x="3" y="3" width="6" height="6" rx="1.5"/><rect x="15" y="15" width="6" height="6" rx="1.5"/><path d="M6 9v3a3 3 0 0 0 3 3h6"/><path d="m13 13 2 2-2 2"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4"/><path d="M5 4h11l-2 4 2 4H5"/></symbol>
+  <symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="m8.5 14-1.5 7.5 5-3 5 3-1.5-7.5"/></symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24"><path d="M3 12V4a1 1 0 0 1 1-1h8l9 9-9 9z"/><circle cx="7.5" cy="7.5" r="1.25"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M20 15a2 2 0 0 1-2 2H8l-4 4V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2z"/><path d="M8 8.5h8"/><path d="M8 12.5h5"/></symbol>
+  <symbol id="i-person-check" viewBox="0 0 24 24"><circle cx="9" cy="8" r="4"/><path d="M2 21a7 7 0 0 1 14 0"/><path d="m16 11 2 2 4-4"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+</svg>
+
 <a class="skip" href="#main">Skip to content</a>
 
-<header class="site-head wrap">
-  <a class="brand" href="#top" aria-label="Praxis Minds, back to top">
-    <svg class="brand-mark" viewBox="0 0 26 26" aria-hidden="true">
-      <rect x="1" y="1" width="6.5" height="6.5"/><rect x="9.75" y="1" width="6.5" height="6.5"/><rect x="18.5" y="1" width="6.5" height="6.5"/>
-      <rect x="1" y="9.75" width="6.5" height="6.5"/><rect class="on" x="9.75" y="9.75" width="6.5" height="6.5"/><rect class="on" x="18.5" y="9.75" width="6.5" height="6.5"/>
-      <rect x="1" y="18.5" width="6.5" height="6.5"/><rect x="9.75" y="18.5" width="6.5" height="6.5"/><rect x="18.5" y="18.5" width="6.5" height="6.5"/>
-    </svg>
-    <span>Praxis Minds</span>
-  </a>
-  <nav class="site-nav" aria-label="Main">
-    <a href="#method">How we work</a>
-    <a href="#build">What we build</a>
-    <a href="#workshops">Workshops</a>
-    <a href="#prices">Prices</a>
-  </nav>
-  <p class="lang" aria-label="Language">
-    <span class="lang-cur" aria-current="true">EN</span>
-    <a href="pt/index.html" hreflang="pt-PT" lang="pt-PT" title="Ver em português">PT</a>
-  </p>
-  <a class="btn btn-small" href="#contact"><span class="long">Book a 20-min call</span><span class="short">Book a call</span></a>
+<header class="site-head" id="site-head">
+  <div class="wrap head-in">
+    <a class="brand" href="#top" aria-label="Praxis Minds, back to top">
+      <svg class="logo" viewBox="0 0 40 40" aria-hidden="true"><rect class="logo-stem" x="8" y="7" width="8" height="26" rx="4"/><path class="logo-bowl" d="M19 7h3a9 9 0 0 1 0 18h-3z"/></svg>
+      <span class="brand-name">Praxis<span> Minds</span></span>
+    </a>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <a href="#method">How we work</a>
+      <a href="#services">Services</a>
+      <a href="#prices">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn nav-cta" href="#contact">Book a 20-min call</a>
+    </nav>
+    <p class="lang" aria-label="Language">
+      <span class="lang-cur" aria-current="true">EN</span>
+      <a href="pt/index.html" hreflang="pt-PT" lang="pt-PT" title="Ver em português">PT</a>
+    </p>
+    <a class="btn btn-sm head-cta" href="#contact">Book a 20-min call</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu"><span></span><span></span></button>
+  </div>
 </header>
 
 <main id="main" data-locale="en">
 
-<!-- HERO: the thesis, a real week of busywork shrinking -->
-<section class="hero wrap" id="top">
-  <p class="eyebrow">AI consultancy for small and mid-sized companies</p>
-  <div class="hero-head">
-    <h1>AI, put into <span class="hl">practice.</span></h1>
-    <p class="pen hero-note">práxis is Greek for action.<br>Ideas, put to work.</p>
-  </div>
-
-  <div class="hero-body">
+<!-- HERO: the promise, and an example week where repetitive work shrinks -->
+<section class="hero" id="top">
+  <div class="hero-bg" aria-hidden="true"><span class="blob blob-1"></span><span class="blob blob-2"></span></div>
+  <div class="wrap hero-grid">
     <div class="hero-copy">
-      <p class="lead">We find the work that eats your team's week, build AI tools that take it over, and teach your people to use them. Fixed prices, first results in weeks.</p>
-      <div class="cta-row">
-        <a class="btn" href="#contact">Book a free 20-minute AI check</a>
-        <a class="link-arrow" href="#calculator">What does one task cost you?</a>
+      <p class="badge enter"><span class="badge-dot"></span>AI consultancy for small and mid-sized companies</p>
+      <h1 class="enter" style="--e:1">AI, put into <em>practice.<svg class="scribble" viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M4 13 C 50 5, 120 4, 196 9"/></svg></em></h1>
+      <p class="lead enter" style="--e:2">We find the work that eats your team's week, build AI tools that take it over, and teach your people to use them.</p>
+      <div class="cta-row enter" style="--e:3">
+        <a class="btn btn-lg" href="#contact">Book a free 20-minute AI check <svg class="ic arr" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn-lg btn-ghost" href="#calculator">What does one task cost you?</a>
       </div>
-      <ul class="legend" aria-label="Legend for the example week">
-        <li><span class="sw sw-busy"></span>Repetitive work</li>
-        <li><span class="sw sw-check"></span>A person checks the AI's work</li>
-        <li><span class="sw sw-freed"></span>Time back</li>
-        <li><span class="sw sw-fixed"></span>Everything else</li>
+      <ul class="ticks enter" style="--e:4">
+        <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Fixed prices</li>
+        <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>First results in weeks</li>
+        <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Your data stays yours</li>
       </ul>
     </div>
 
-    <figure class="week" id="week" aria-labelledby="week-title">
+    <figure class="week enter" style="--e:3" id="week" aria-labelledby="week-title">
       <div class="week-top">
-        <p class="week-title" id="week-title">An example admin week</p>
+        <p class="week-title" id="week-title"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>An example admin week</p>
         <div class="seg" role="group" aria-label="Show the week">
           <button type="button" id="week-now" aria-pressed="true">Now</button>
           <button type="button" id="week-after" aria-pressed="false">With Praxis</button>
@@ -95,330 +123,383 @@
       </div>
 
       <dl class="week-stats">
-        <div><dt>Repetitive work</dt><dd id="stat-busy">15 h 30 min</dd></div>
-        <div><dt>Time back</dt><dd id="stat-back">0 h</dd></div>
+        <div class="ws-busy"><dt>Repetitive work</dt><dd id="stat-busy">13 h 30 min</dd></div>
+        <div class="ws-back"><dt>Time back</dt><dd id="stat-back">0 h</dd></div>
       </dl>
 
-      <div class="week-scroll">
-        <div class="week-grid">
-          <div class="wk-corner" aria-hidden="true"></div>
-          <div class="wk-dayname">Mon</div><div class="wk-dayname">Tue</div><div class="wk-dayname">Wed</div><div class="wk-dayname">Thu</div><div class="wk-dayname">Fri</div>
-
-          <div class="wk-hours" aria-hidden="true">
-            <span style="--h:0">08<i>:00</i></span><span style="--h:1">09<i>:00</i></span><span style="--h:2">10<i>:00</i></span><span style="--h:3">11<i>:00</i></span><span style="--h:4">12<i>:00</i></span><span style="--h:5">13<i>:00</i></span><span style="--h:6">14<i>:00</i></span><span style="--h:7">15<i>:00</i></span><span style="--h:8">16<i>:00</i></span><span style="--h:9">17<i>:00</i></span><span style="--h:10">18<i>:00</i></span>
-          </div>
-
-          <div class="day" aria-label="Monday">
-            <div class="blk busy" style="--s:9;--d:2;--a:.5;--i:0" title="Typing supplier invoices into the ERP"><span class="l-now"><span class="l-long">Typing supplier invoices into the ERP</span><span class="l-short">Invoices</span></span><span class="l-after">Check invoices</span></div>
-            <div class="blk freed" style="--s:9.5;--d:1.5;--i:0"><span class="l-long">Customer visits</span><span class="l-short">Clients</span></div>
-            <div class="blk fixed" style="--s:11.5;--d:1"><span class="l-long">Team meeting</span><span class="l-short">Meeting</span></div>
-            <div class="blk busy" style="--s:14;--d:1;--a:.25;--i:1" title="Answering “where’s my order?” emails"><span class="l-now"><span class="l-long">“Where’s my order?” emails</span><span class="l-short">Order emails</span></span><span class="l-after"></span></div>
-            <div class="blk freed" style="--s:14.25;--d:.75;--i:1"></div>
-          </div>
-
-          <div class="day" aria-label="Tuesday">
-            <div class="blk busy" style="--s:9;--d:1.5;--a:.25;--i:2" title="Copying orders from email into the system"><span class="l-now"><span class="l-long">Copying orders from email into the system</span><span class="l-short">Order entry</span></span><span class="l-after"></span></div>
-            <div class="blk freed" style="--s:9.25;--d:1.25;--i:2"><span class="l-long">Chase open quotes</span><span class="l-short">Quotes</span></div>
-            <div class="blk fixed" style="--s:11;--d:1"><span class="l-long">Supplier call</span><span class="l-short">Call</span></div>
-            <div class="blk busy" style="--s:15;--d:2;--a:.25;--i:3" title="Building the weekly sales spreadsheet"><span class="l-now"><span class="l-long">Building the weekly sales spreadsheet</span><span class="l-short">Sales report</span></span><span class="l-after"></span></div>
-            <div class="blk freed" style="--s:15.25;--d:1.75;--i:3"><span class="l-long">Coach the sales team</span><span class="l-short">Coaching</span></div>
-          </div>
-
-          <div class="day" aria-label="Wednesday">
-            <div class="blk busy" style="--s:9;--d:2;--a:.5;--i:4" title="Typing supplier invoices into the ERP"><span class="l-now"><span class="l-long">Typing supplier invoices into the ERP</span><span class="l-short">Invoices</span></span><span class="l-after">Check invoices</span></div>
-            <div class="blk freed" style="--s:9.5;--d:1.5;--i:4"><span class="l-long">Plan next quarter</span><span class="l-short">Planning</span></div>
-            <div class="blk busy" style="--s:11;--d:1;--a:.25;--i:5" title="Searching folders for the right file"><span class="l-now"><span class="l-long">Searching folders for the right file</span><span class="l-short">Searching</span></span><span class="l-after"></span></div>
-            <div class="blk freed" style="--s:11.25;--d:.75;--i:5"></div>
-            <div class="blk fixed" style="--s:14;--d:1.5"><span class="l-long">Site visit</span><span class="l-short">Visit</span></div>
-          </div>
-
-          <div class="day" aria-label="Thursday">
-            <div class="blk busy" style="--s:10;--d:2;--a:.5;--i:6" title="Writing quotes from scratch"><span class="l-now"><span class="l-long">Writing quotes from scratch</span><span class="l-short">Quotes</span></span><span class="l-after">Check quotes</span></div>
-            <div class="blk freed" style="--s:10.5;--d:1.5;--i:6"><span class="l-long">Train the new hire</span><span class="l-short">Training</span></div>
-            <div class="blk busy" style="--s:14;--d:1;--a:.25;--i:7" title="Answering the same staff questions"><span class="l-now"><span class="l-long">Answering the same staff questions</span><span class="l-short">Questions</span></span><span class="l-after"></span></div>
-            <div class="blk freed" style="--s:14.25;--d:.75;--i:7"></div>
-            <div class="blk fixed" style="--s:16;--d:1"><span class="l-long">Supplier meeting</span><span class="l-short">Meeting</span></div>
-          </div>
-
-          <div class="day" aria-label="Friday">
-            <div class="blk fixed" style="--s:9;--d:1"><span class="l-long">Weekly planning</span><span class="l-short">Planning</span></div>
-            <div class="blk busy" style="--s:14;--d:3;--a:.5;--i:8" title="Chasing numbers for the month-end report"><span class="l-now"><span class="l-long">Chasing numbers for the month-end report</span><span class="l-short">Month-end</span></span><span class="l-after">Read summary</span></div>
-            <div class="blk freed" style="--s:14.5;--d:2.5;--i:8"><span class="l-long">Home early</span><span class="l-short">Home early</span></div>
-          </div>
-        </div>
-      </div>
+      <ul class="wk-rows">
+        <li class="wk-row" style="--now:4;--after:1;--i:0"><span class="wk-task">Typing supplier invoices into the ERP</span><span class="wk-time">4 h</span><span class="wk-bar" aria-hidden="true"><span class="wk-fill"></span></span></li>
+        <li class="wk-row" style="--now:3;--after:.5;--i:1"><span class="wk-task">Chasing numbers for the month-end report</span><span class="wk-time">3 h</span><span class="wk-bar" aria-hidden="true"><span class="wk-fill"></span></span></li>
+        <li class="wk-row" style="--now:2;--after:.25;--i:2"><span class="wk-task">Building the weekly sales spreadsheet</span><span class="wk-time">2 h</span><span class="wk-bar" aria-hidden="true"><span class="wk-fill"></span></span></li>
+        <li class="wk-row" style="--now:2;--after:.5;--i:3"><span class="wk-task">Writing quotes from scratch</span><span class="wk-time">2 h</span><span class="wk-bar" aria-hidden="true"><span class="wk-fill"></span></span></li>
+        <li class="wk-row" style="--now:1.5;--after:.25;--i:4"><span class="wk-task">Copying orders from email into the system</span><span class="wk-time">1 h 30 min</span><span class="wk-bar" aria-hidden="true"><span class="wk-fill"></span></span></li>
+        <li class="wk-row" style="--now:1;--after:.25;--i:5"><span class="wk-task">Answering “where’s my order?” emails</span><span class="wk-time">1 h</span><span class="wk-bar" aria-hidden="true"><span class="wk-fill"></span></span></li>
+      </ul>
       <figcaption>Illustration only. Your week will look different, and the <a href="#calculator">calculator</a> below works out your own numbers.</figcaption>
     </figure>
   </div>
 </section>
 
-<!-- METHOD: a real sequence, so it is numbered by its verbs -->
-<section class="section wrap" id="method">
-  <header class="sec-head">
-    <p class="eyebrow">How a project runs</p>
-    <h2>Three steps, always in this order.</h2>
-    <p class="sec-lead">Each step ends with something you can use, so you can stop after any of them.</p>
-  </header>
-  <ol class="steps">
-    <li class="step">
-      <h3 class="verb">Find</h3>
-      <p>We sit with the people doing the work, map where the hours go, and rank what AI can take over by hours saved and effort needed.</p>
-      <dl class="facts">
-        <div><dt>You get</dt><dd>A ranked list of opportunities with the hours and euros behind each one, plus a 90-day plan.</dd></div>
-        <div><dt>Takes</dt><dd>2 to 3 weeks</dd></div>
-        <div><dt>From</dt><dd>€1,500</dd></div>
-      </dl>
-    </li>
-    <li class="step">
-      <h3 class="verb">Build</h3>
-      <p>We build the tools: automations, assistants and dashboards. You see working progress every week, tested on your real documents.</p>
-      <dl class="facts">
-        <div><dt>You get</dt><dd>A working tool, connected to the systems you already use, with a person checking anything important.</dd></div>
-        <div><dt>Takes</dt><dd>1 to 8 weeks</dd></div>
-        <div><dt>From</dt><dd>€1,500</dd></div>
-      </dl>
-    </li>
-    <li class="step">
-      <h3 class="verb">Teach</h3>
-      <p>We train the people who will use the tools, and anyone else who wants to work well with AI.</p>
-      <dl class="facts">
-        <div><dt>You get</dt><dd>Confident users, written guides, and training records for your files.</dd></div>
-        <div><dt>Takes</dt><dd>90 minutes to 6 weeks</dd></div>
-        <div><dt>From</dt><dd>€800</dd></div>
-      </dl>
-    </li>
-  </ol>
-  <p class="aside-note"><strong>Not sure where to start?</strong> The AI Quick-Start is a 2-hour session on your main processes, followed by five quick wins in writing. It costs €350, and we credit it if you book an audit.</p>
+<!-- METHOD: a real sequence, so the steps are numbered -->
+<section class="section" id="method">
+  <div class="wrap">
+    <header class="sec-head split reveal">
+      <p class="kicker">How a project runs</p>
+      <h2>Three steps, <em>always</em> in this order.</h2>
+      <p class="sec-lead">Each step ends with something you can use, so you can stop after any of them.</p>
+    </header>
+
+    <ol class="steps" data-stagger>
+      <li class="step">
+        <div class="step-top"><span class="icon-tile"><svg class="ic" aria-hidden="true"><use href="#i-search"/></svg></span><span class="step-num">01</span></div>
+        <h3>Find</h3>
+        <p>We sit with the people doing the work, map where the hours go, and rank what AI can take over by hours saved and effort needed.</p>
+        <dl class="facts">
+          <div><dt>You get</dt><dd>A ranked list of opportunities with the hours and euros behind each one, plus a 90-day plan.</dd></div>
+          <div><dt>Takes</dt><dd>2 to 3 weeks</dd></div>
+          <div><dt>From</dt><dd><b>€1,500</b></dd></div>
+        </dl>
+        <span class="step-arrow" aria-hidden="true"><svg class="ic"><use href="#i-arrow"/></svg></span>
+      </li>
+      <li class="step">
+        <div class="step-top"><span class="icon-tile"><svg class="ic" aria-hidden="true"><use href="#i-blocks"/></svg></span><span class="step-num">02</span></div>
+        <h3>Build</h3>
+        <p>We build the tools: automations, assistants and dashboards. You see working progress every week, tested on your real documents.</p>
+        <dl class="facts">
+          <div><dt>You get</dt><dd>A working tool, connected to the systems you already use, with a person checking anything important.</dd></div>
+          <div><dt>Takes</dt><dd>1 to 8 weeks</dd></div>
+          <div><dt>From</dt><dd><b>€1,500</b></dd></div>
+        </dl>
+        <span class="step-arrow" aria-hidden="true"><svg class="ic"><use href="#i-arrow"/></svg></span>
+      </li>
+      <li class="step">
+        <div class="step-top"><span class="icon-tile"><svg class="ic" aria-hidden="true"><use href="#i-cap"/></svg></span><span class="step-num">03</span></div>
+        <h3>Teach</h3>
+        <p>We train the people who will use the tools, and anyone else who wants to work well with AI.</p>
+        <dl class="facts">
+          <div><dt>You get</dt><dd>Confident users, written guides, and training records for your files.</dd></div>
+          <div><dt>Takes</dt><dd>90 minutes to 6 weeks</dd></div>
+          <div><dt>From</dt><dd><b>€800</b></dd></div>
+        </dl>
+      </li>
+    </ol>
+
+    <div class="callout reveal">
+      <span class="icon-tile"><svg class="ic" aria-hidden="true"><use href="#i-compass"/></svg></span>
+      <p><strong>Not sure where to start?</strong> The AI Quick-Start is a 2-hour session on your main processes, followed by five quick wins in writing. It costs €350, and we credit it if you book an audit.</p>
+      <a class="btn btn-ghost" href="#contact">Ask about the Quick-Start</a>
+    </div>
+  </div>
 </section>
 
-<!-- BUILD: an inventory written as inputs and outputs -->
-<section class="section wrap" id="build">
-  <header class="sec-head">
-    <p class="eyebrow">What we build</p>
-    <h2>Unglamorous tools that give hours back.</h2>
-    <p class="sec-lead">These are the jobs we're asked for most. Each one starts from a task your team already does by hand.</p>
-  </header>
+<!-- SERVICES: three groups behind tabs. Without JavaScript all three show, one after the other. -->
+<section class="section band" id="services">
+  <div class="wrap">
+    <header class="sec-head center reveal">
+      <p class="kicker">Services</p>
+      <h2>What we build, teach <em>and write.</em></h2>
+      <p class="sec-lead">Choose a tab to see what each service includes, how long it takes and where prices start.</p>
+    </header>
 
-  <ul class="inventory">
-    <li class="item">
-      <div class="item-name"><h3>Document reader</h3><p class="item-meta">2–4 weeks · from €2,500</p></div>
-      <dl class="io">
-        <div><dt>In</dt><dd>Supplier invoices, orders and delivery notes, as PDFs or emails.</dd></div>
-        <div><dt>Out</dt><dd>Clean rows in your ERP, accounting software or spreadsheet. Anything unusual is flagged for a person.</dd></div>
-      </dl>
-    </li>
-    <li class="item">
-      <div class="item-name"><h3>Inbox triage</h3><p class="item-meta">2–3 weeks · from €2,500</p></div>
-      <dl class="io">
-        <div><dt>In</dt><dd>A shared inbox such as orders@, info@ or support@.</dd></div>
-        <div><dt>Out</dt><dd>Every email sorted, summarised and answered in draft. Your team approves before anything is sent.</dd></div>
-      </dl>
-    </li>
-    <li class="item">
-      <div class="item-name"><h3>Company knowledge assistant</h3><p class="item-meta">3–6 weeks · from €4,000</p></div>
-      <dl class="io">
-        <div><dt>In</dt><dd>Manuals, procedures, price lists and policies.</dd></div>
-        <div><dt>Out</dt><dd>Plain answers to staff questions, each with a link to the page it came from.</dd></div>
-      </dl>
-    </li>
-    <li class="item">
-      <div class="item-name"><h3>Management dashboard</h3><p class="item-meta">2–6 weeks · from €2,500</p></div>
-      <dl class="io">
-        <div><dt>In</dt><dd>Sales, operations and finance data from the tools you already use.</dd></div>
-        <div><dt>Out</dt><dd>One screen of KPIs, and a short written summary every Monday of what changed and why.</dd></div>
-      </dl>
-    </li>
-    <li class="item">
-      <div class="item-name"><h3>Quote and proposal builder</h3><p class="item-meta">3–5 weeks · from €4,000</p></div>
-      <dl class="io">
-        <div><dt>In</dt><dd>A short form, your price list and a few past quotes.</dd></div>
-        <div><dt>Out</dt><dd>A branded quote or proposal, ready for review in minutes.</dd></div>
-      </dl>
-    </li>
-    <li class="item">
-      <div class="item-name"><h3>System connections</h3><p class="item-meta">1–3 weeks · from €1,500</p></div>
-      <dl class="io">
-        <div><dt>In</dt><dd>Your CRM, ERP, accounting software, spreadsheets and email.</dd></div>
-        <div><dt>Out</dt><dd>Data that moves between them on its own, so nobody copies and pastes.</dd></div>
-      </dl>
-    </li>
-  </ul>
-  <p class="aside-note">The AI itself usually costs between a few euros and a few dozen euros a month to run. You get that estimate in writing before we build anything.</p>
+    <div class="tablist-wrap reveal">
+      <div class="tablist" role="tablist" aria-label="Services">
+        <button class="tab" type="button" role="tab" id="tab-build" aria-controls="build" aria-selected="true"><svg class="ic" aria-hidden="true"><use href="#i-blocks"/></svg>Tools we build</button>
+        <button class="tab" type="button" role="tab" id="tab-workshops" aria-controls="workshops" aria-selected="false" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-cap"/></svg>Workshops</button>
+        <button class="tab" type="button" role="tab" id="tab-more" aria-controls="more" aria-selected="false" tabindex="-1"><svg class="ic" aria-hidden="true"><use href="#i-doc"/></svg>Business documents</button>
+        <span class="tab-ind" aria-hidden="true"></span>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="build" role="tabpanel" aria-labelledby="tab-build" tabindex="0">
+      <p class="panel-intro"><strong>Unglamorous tools that give hours back.</strong> These are the jobs we're asked for most. Each one starts from a task your team already does by hand.</p>
+      <ul class="cards" data-stagger>
+        <li class="card">
+          <span class="icon-tile"><svg class="ic" aria-hidden="true"><use href="#i-doc"/></svg></span>
+          <h3>Document reader</h3>
+          <p class="meta"><span class="pill"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>2–4 weeks</span><span class="pill pill-price">from €2,500</span></p>
+          <dl class="io">
+            <div><dt>In</dt><dd>Supplier invoices, orders and delivery notes, as PDFs or emails.</dd></div>
+            <div><dt>Out</dt><dd>Clean rows in your ERP, accounting software or spreadsheet. Anything unusual is flagged for a person.</dd></div>
+          </dl>
+        </li>
+        <li class="card">
+          <span class="icon-tile"><svg class="ic" aria-hidden="true"><use href="#i-inbox"/></svg></span>
+          <h3>Inbox triage</h3>
+          <p class="meta"><span class="pill"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>2–3 weeks</span><span class="pill pill-price">from €2,500</span></p>
+          <dl class="io">
+            <div><dt>In</dt><dd>A shared inbox such as orders@, info@ or support@.</dd></div>
+            <div><dt>Out</dt><dd>Every email sorted, summarised and answered in draft. Your team approves before anything is sent.</dd></div>
+          </dl>
+        </li>
+        <li class="card">
+          <span class="icon-tile"><svg class="ic" aria-hidden="true"><use href="#i-book"/></svg></span>
+          <h3>Company knowledge assistant</h3>
+          <p class="meta"><span class="pill"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>3–6 weeks</span><span class="pill pill-price">from €4,000</span></p>
+          <dl class="io">
+            <div><dt>In</dt><dd>Manuals, procedures, price lists and policies.</dd></div>
+            <div><dt>Out</dt><dd>Plain answers to staff questions, each with a link to the page it came from.</dd></div>
+          </dl>
+        </li>
+        <li class="card">
+          <span class="icon-tile"><svg class="ic" aria-hidden="true"><use href="#i-chart"/></svg></span>
+          <h3>Management dashboard</h3>
+          <p class="meta"><span class="pill"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>2–6 weeks</span><span class="pill pill-price">from €2,500</span></p>
+          <dl class="io">
+            <div><dt>In</dt><dd>Sales, operations and finance data from the tools you already use.</dd></div>
+            <div><dt>Out</dt><dd>One screen of KPIs, and a short written summary every Monday of what changed and why.</dd></div>
+          </dl>
+        </li>
+        <li class="card">
+          <span class="icon-tile"><svg class="ic" aria-hidden="true"><use href="#i-receipt"/></svg></span>
+          <h3>Quote and proposal builder</h3>
+          <p class="meta"><span class="pill"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>3–5 weeks</span><span class="pill pill-price">from €4,000</span></p>
+          <dl class="io">
+            <div><dt>In</dt><dd>A short form, your price list and a few past quotes.</dd></div>
+            <div><dt>Out</dt><dd>A branded quote or proposal, ready for review in minutes.</dd></div>
+          </dl>
+        </li>
+        <li class="card">
+          <span class="icon-tile"><svg class="ic" aria-hidden="true"><use href="#i-link"/></svg></span>
+          <h3>System connections</h3>
+          <p class="meta"><span class="pill"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>1–3 weeks</span><span class="pill pill-price">from €1,500</span></p>
+          <dl class="io">
+            <div><dt>In</dt><dd>Your CRM, ERP, accounting software, spreadsheets and email.</dd></div>
+            <div><dt>Out</dt><dd>Data that moves between them on its own, so nobody copies and pastes.</dd></div>
+          </dl>
+        </li>
+      </ul>
+      <p class="panel-note"><svg class="ic" aria-hidden="true"><use href="#i-info"/></svg><span>The AI itself usually costs between a few euros and a few dozen euros a month to run. You get that estimate in writing before we build anything.</span></p>
+    </div>
+
+    <div class="tab-panel" id="workshops" role="tabpanel" aria-labelledby="tab-workshops" tabindex="0">
+      <p class="panel-intro"><strong>Teach your team to work with AI.</strong> Hands-on sessions built around your tools and the real tasks your people do. About 70% of the time is spent doing.</p>
+      <ul class="cards" data-stagger>
+        <li class="card">
+          <div class="card-top"><span class="icon-tile"><svg class="ic" aria-hidden="true"><use href="#i-bulb"/></svg></span><span class="card-price"><small>from</small> €800</span></div>
+          <h3>AI Fundamentals for Teams</h3>
+          <p>For everyone. No technical background needed. What AI does well, where it fails, how to ask for what you need, and the rules for your company's data.</p>
+          <p class="meta"><span class="pill"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>90 min or ½ day</span></p>
+        </li>
+        <li class="card">
+          <div class="card-top"><span class="icon-tile"><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg></span><span class="card-price"><small>from</small> €1,500</span></div>
+          <h3>AI for Your Role</h3>
+          <p>One group at a time: sales, admin, finance, HR, customer service or management, each working on their own tasks.</p>
+          <p class="meta"><span class="pill"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>½ day</span></p>
+        </li>
+        <li class="card">
+          <div class="card-top"><span class="icon-tile"><svg class="ic" aria-hidden="true"><use href="#i-flow"/></svg></span><span class="card-price"><small>from</small> €2,500</span></div>
+          <h3>Build Your First AI Workflow</h3>
+          <p>For power users and process owners. Everyone leaves with one working workflow for their own job.</p>
+          <p class="meta"><span class="pill"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>1 day</span></p>
+        </li>
+        <li class="card">
+          <div class="card-top"><span class="icon-tile"><svg class="ic" aria-hidden="true"><use href="#i-compass"/></svg></span><span class="card-price"><small>from</small> €2,000</span></div>
+          <h3>AI for Leaders</h3>
+          <p>For owners and managers. Where AI pays off in your business, what the risks are, and a 90-day plan.</p>
+          <p class="meta"><span class="pill"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>½ day</span></p>
+        </li>
+        <li class="card">
+          <div class="card-top"><span class="icon-tile"><svg class="ic" aria-hidden="true"><use href="#i-flag"/></svg></span><span class="card-price"><small>from</small> €6,000</span></div>
+          <h3>AI Champions Program</h3>
+          <p>Five to fifteen people, each improving one real process. It ends with a demo day for management.</p>
+          <p class="meta"><span class="pill"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>6 weeks</span></p>
+        </li>
+        <li class="card card-note">
+          <span class="icon-tile"><svg class="ic" aria-hidden="true"><use href="#i-award"/></svg></span>
+          <h3>EU AI Act</h3>
+          <p>Since February 2025, EU companies whose staff use AI tools must take steps to build their AI literacy. Every workshop comes with attendance records, a short quiz and certificates for your files.</p>
+        </li>
+      </ul>
+    </div>
+
+    <div class="tab-panel" id="more" role="tabpanel" aria-labelledby="tab-more" tabindex="0">
+      <p class="panel-intro"><strong>Business documents, made faster.</strong> We use the same tools to produce websites, studies and decks. A person checks every number before it reaches you.</p>
+      <ul class="cards" data-stagger>
+        <li class="card">
+          <span class="icon-tile"><svg class="ic" aria-hidden="true"><use href="#i-globe"/></svg></span>
+          <h3>Websites</h3>
+          <p>Fast, clear sites, with an optional assistant that answers visitors' questions.</p>
+          <p class="meta"><span class="pill pill-price">from €1,200</span></p>
+        </li>
+        <li class="card">
+          <span class="icon-tile"><svg class="ic" aria-hidden="true"><use href="#i-trend"/></svg></span>
+          <h3>Viability studies</h3>
+          <p>Market, competition, five-year financials and a clear recommendation, with a source for every figure.</p>
+          <p class="meta"><span class="pill pill-price">from €1,500</span></p>
+        </li>
+        <li class="card">
+          <span class="icon-tile"><svg class="ic" aria-hidden="true"><use href="#i-present"/></svg></span>
+          <h3>Pitch decks</h3>
+          <p>Ten to fifteen slides for investors, banks or your own board.</p>
+          <p class="meta"><span class="pill pill-price">from €800</span></p>
+        </li>
+        <li class="card">
+          <span class="icon-tile"><svg class="ic" aria-hidden="true"><use href="#i-briefcase"/></svg></span>
+          <h3>Business plans</h3>
+          <p>For banks, investors and funding applications.</p>
+          <p class="meta"><span class="pill pill-price">from €2,000</span></p>
+        </li>
+        <li class="card">
+          <span class="icon-tile"><svg class="ic" aria-hidden="true"><use href="#i-megaphone"/></svg></span>
+          <h3>Marketing content</h3>
+          <p>LinkedIn posts, newsletters, articles and case studies in your voice.</p>
+          <p class="meta"><span class="pill pill-price">from €800 a month</span></p>
+        </li>
+        <li class="card card-cta">
+          <h3>Something else in mind?</h3>
+          <p>Tell us what you need, and we'll tell you plainly whether we can help.</p>
+          <a class="link-arrow" href="#contact">Get in touch</a>
+        </li>
+      </ul>
+    </div>
+  </div>
 </section>
 
 <!-- CALCULATOR: the visitor's own numbers -->
-<section class="section wrap" id="calculator">
-  <header class="sec-head">
-    <p class="eyebrow">Your numbers</p>
-    <h2>What does one task cost you?</h2>
-    <p class="sec-lead">Pick a task and adjust the numbers. Everything is calculated in your browser, and nothing is sent anywhere.</p>
-  </header>
+<section class="section" id="calculator">
+  <div class="wrap">
+    <header class="sec-head split reveal">
+      <p class="kicker">Your numbers</p>
+      <h2>What does one task <em>cost you?</em></h2>
+      <p class="sec-lead">Pick a task and adjust the numbers. Everything is calculated in your browser, and nothing is sent anywhere.</p>
+    </header>
 
-  <div class="calc">
-    <form class="calc-in" id="calc-form" autocomplete="off">
-      <div class="field">
-        <label for="calc-task">Task</label>
-        <select id="calc-task">
-          <option value="invoices">Typing invoices into the system</option>
-          <option value="orders">Entering orders from emails</option>
-          <option value="questions">Answering repeat customer questions</option>
-          <option value="quotes">Writing quotes</option>
-          <option value="report">Building the weekly report</option>
-          <option value="other">Something else</option>
-        </select>
-      </div>
-      <div class="field-row">
+    <div class="calc reveal">
+      <form class="calc-in" id="calc-form" autocomplete="off">
         <div class="field">
-          <label for="calc-count">Times a week</label>
-          <input id="calc-count" type="number" inputmode="numeric" min="0" max="10000" step="1" value="80">
+          <label for="calc-task">Task</label>
+          <select id="calc-task">
+            <option value="invoices">Typing invoices into the system</option>
+            <option value="orders">Entering orders from emails</option>
+            <option value="questions">Answering repeat customer questions</option>
+            <option value="quotes">Writing quotes</option>
+            <option value="report">Building the weekly report</option>
+            <option value="other">Something else</option>
+          </select>
         </div>
-        <div class="field">
-          <label for="calc-minutes">Minutes each</label>
-          <input id="calc-minutes" type="number" inputmode="decimal" min="0" max="600" step="0.5" value="5">
+        <div class="field-row">
+          <div class="field">
+            <label for="calc-count">Times a week</label>
+            <input id="calc-count" type="number" inputmode="numeric" min="0" max="10000" step="1" value="80">
+          </div>
+          <div class="field">
+            <label for="calc-minutes">Minutes each</label>
+            <input id="calc-minutes" type="number" inputmode="decimal" min="0" max="600" step="0.5" value="5">
+          </div>
+          <div class="field">
+            <label for="calc-rate">Hourly cost (€)</label>
+            <input id="calc-rate" type="number" inputmode="decimal" min="0" max="500" step="1" value="25">
+          </div>
         </div>
-        <div class="field">
-          <label for="calc-rate">Hourly cost (€)</label>
-          <input id="calc-rate" type="number" inputmode="decimal" min="0" max="500" step="1" value="25">
-        </div>
-      </div>
-      <p class="calc-assume">Assumes 46 working weeks a year and that AI takes over about 70% of the time, with a person still checking the results. One working week is 40 hours.</p>
-    </form>
+        <p class="calc-assume"><svg class="ic" aria-hidden="true"><use href="#i-info"/></svg><span>Assumes 46 working weeks a year and that AI takes over about 70% of the time, with a person still checking the results. One working week is 40 hours.</span></p>
+      </form>
 
-    <div class="calc-out" aria-live="polite">
-      <div class="calc-big">
-        <p class="calc-label">This task takes</p>
-        <p class="calc-num"><span id="out-hours">307</span> <small>hours a year</small></p>
-        <p class="calc-sub">and costs about <strong id="out-cost">€7,670</strong> a year.</p>
+      <div class="calc-out" aria-live="polite">
+        <div class="calc-big">
+          <p class="calc-label">This task takes</p>
+          <p class="calc-num"><span id="out-hours">307</span> <small>hours a year</small></p>
+          <p class="calc-sub">and costs about <strong id="out-cost">€7,670</strong> a year.</p>
+        </div>
+        <div class="calc-back">
+          <p class="calc-label">Time we could hand back</p>
+          <p class="calc-num"><span id="out-back">215</span> <small>hours</small></p>
+          <p class="calc-sub">That's about <strong id="out-weeks">5.4</strong> working weeks a year, from one task.</p>
+        </div>
+        <a class="btn btn-accent" id="calc-talk" href="#contact">Talk to us about this task <svg class="ic arr" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
-      <div class="calc-back">
-        <p class="calc-label">Time we could hand back</p>
-        <p class="calc-num"><span id="out-back">215</span> <small>hours</small></p>
-        <p class="calc-sub">That's about <strong id="out-weeks">5.4</strong> working weeks a year, from one task.</p>
-      </div>
-      <a class="btn btn-marker" id="calc-talk" href="#contact">Talk to us about this task</a>
     </div>
   </div>
 </section>
 
-<!-- TEACH: a timetable, because workshops are booked by duration -->
-<section class="section wrap" id="workshops">
-  <header class="sec-head">
-    <p class="eyebrow">Workshops and training</p>
-    <h2>Teach your team to work with AI.</h2>
-    <p class="sec-lead">Hands-on sessions built around your tools and the real tasks your people do. About 70% of the time is spent doing.</p>
-  </header>
-
-  <ul class="timetable">
-    <li><span class="slot">90 min<br>or ½ day</span><div><h3>AI Fundamentals for Teams</h3><p>For everyone. No technical background needed. What AI does well, where it fails, how to ask for what you need, and the rules for your company's data.</p></div><span class="price">from €800</span></li>
-    <li><span class="slot">½ day</span><div><h3>AI for Your Role</h3><p>One group at a time: sales, admin, finance, HR, customer service or management, each working on their own tasks.</p></div><span class="price">from €1,500</span></li>
-    <li><span class="slot">1 day</span><div><h3>Build Your First AI Workflow</h3><p>For power users and process owners. Everyone leaves with one working workflow for their own job.</p></div><span class="price">from €2,500</span></li>
-    <li><span class="slot">½ day</span><div><h3>AI for Leaders</h3><p>For owners and managers. Where AI pays off in your business, what the risks are, and a 90-day plan.</p></div><span class="price">from €2,000</span></li>
-    <li><span class="slot">6 weeks</span><div><h3>AI Champions Program</h3><p>Five to fifteen people, each improving one real process. It ends with a demo day for management.</p></div><span class="price">from €6,000</span></li>
-  </ul>
-
-  <div class="note-box">
-    <p><strong>EU AI Act.</strong> Since February 2025, EU companies whose staff use AI tools must take steps to build their AI literacy. Every workshop comes with attendance records, a short quiz and certificates for your files.</p>
+<!-- HOUSE RULES: commitments, not a sequence -->
+<section class="section dark" id="rules">
+  <div class="wrap">
+    <header class="sec-head reveal">
+      <p class="kicker">House rules</p>
+      <h2>What you can <em>hold us to.</em></h2>
+    </header>
+    <ul class="promises" data-stagger>
+      <li class="promise"><span class="icon-tile"><svg class="ic" aria-hidden="true"><use href="#i-tag"/></svg></span><h3>Fixed scope, fixed price.</h3><p>If something changes, you get a price before we do the work.</p></li>
+      <li class="promise"><span class="icon-tile"><svg class="ic" aria-hidden="true"><use href="#i-chat"/></svg></span><h3>Plain language.</h3><p>If you can't explain what we built, we haven't finished.</p></li>
+      <li class="promise"><span class="icon-tile"><svg class="ic" aria-hidden="true"><use href="#i-person-check"/></svg></span><h3>A person checks anything important.</h3><p>Every tool we build flags uncertain cases and leaves the final say with your team.</p></li>
+      <li class="promise"><span class="icon-tile"><svg class="ic" aria-hidden="true"><use href="#i-lock"/></svg></span><h3>Your data stays yours.</h3><p>We use business AI services that don't train on your data, and run tools in your own accounts where we can.</p></li>
+      <li class="promise"><span class="icon-tile"><svg class="ic" aria-hidden="true"><use href="#i-bulb"/></svg></span><h3>We teach as we go.</h3><p>Your team learns how the tools work, so you're never stuck waiting for us.</p></li>
+      <li class="promise promise-cta"><div><h3>Let's talk it through.</h3><p>A free 20-minute call. We'll tell you plainly whether AI can help.</p></div><a class="btn" href="#contact">Book a call <svg class="ic arr" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+    </ul>
   </div>
-</section>
-
-<!-- MORE: same desk, quieter -->
-<section class="section wrap" id="more">
-  <header class="sec-head">
-    <p class="eyebrow">Also from the same desk</p>
-    <h2>Business documents, made faster.</h2>
-    <p class="sec-lead">We use the same tools to produce websites, studies and decks. A person checks every number before it reaches you.</p>
-  </header>
-  <dl class="more-list">
-    <div><dt>Websites</dt><dd>Fast, clear sites, with an optional assistant that answers visitors' questions.</dd><dd class="price">from €1,200</dd></div>
-    <div><dt>Viability studies</dt><dd>Market, competition, five-year financials and a clear recommendation, with a source for every figure.</dd><dd class="price">from €1,500</dd></div>
-    <div><dt>Pitch decks</dt><dd>Ten to fifteen slides for investors, banks or your own board.</dd><dd class="price">from €800</dd></div>
-    <div><dt>Business plans</dt><dd>For banks, investors and funding applications.</dd><dd class="price">from €2,000</dd></div>
-    <div><dt>Marketing content</dt><dd>LinkedIn posts, newsletters, articles and case studies in your voice.</dd><dd class="price">from €800 a month</dd></div>
-  </dl>
-</section>
-
-<!-- RULES: commitments, not a sequence -->
-<section class="section wrap" id="rules">
-  <header class="sec-head">
-    <p class="eyebrow">House rules</p>
-    <h2>What you can hold us to.</h2>
-  </header>
-  <ul class="rules">
-    <li><svg class="tick" viewBox="0 0 40 32" aria-hidden="true"><path d="M3 18 C 8 21, 11 25, 14 29 C 19 18, 27 8, 37 3"/></svg><div><h3>Fixed scope, fixed price.</h3><p>If something changes, you get a price before we do the work.</p></div></li>
-    <li><svg class="tick" viewBox="0 0 40 32" aria-hidden="true"><path d="M3 17 C 7 20, 10 24, 13 28 C 18 17, 26 9, 37 4"/></svg><div><h3>Plain language.</h3><p>If you can't explain what we built, we haven't finished.</p></div></li>
-    <li><svg class="tick" viewBox="0 0 40 32" aria-hidden="true"><path d="M3 19 C 8 22, 11 25, 14 29 C 20 18, 27 9, 37 3"/></svg><div><h3>A person checks anything important.</h3><p>Every tool we build flags uncertain cases and leaves the final say with your team.</p></div></li>
-    <li><svg class="tick" viewBox="0 0 40 32" aria-hidden="true"><path d="M3 18 C 7 21, 10 24, 14 28 C 19 18, 26 8, 37 4"/></svg><div><h3>Your data stays yours.</h3><p>We use business AI services that don't train on your data, and run tools in your own accounts where we can.</p></div></li>
-    <li><svg class="tick" viewBox="0 0 40 32" aria-hidden="true"><path d="M3 17 C 8 21, 11 24, 14 29 C 19 17, 27 9, 37 3"/></svg><div><h3>We teach as we go.</h3><p>Your team learns how the tools work, so you're never stuck waiting for us.</p></div></li>
-  </ul>
 </section>
 
 <!-- PRICES + FOUNDING CLIENTS -->
-<section class="section wrap" id="prices">
-  <div class="prices-grid">
-    <div>
-      <header class="sec-head">
-        <p class="eyebrow">Prices</p>
-        <h2>Prices, out loud.</h2>
-        <p class="sec-lead">Every project has a fixed price, agreed before we start. These are starting points, excluding VAT.</p>
-      </header>
-      <ul class="pricelist">
-        <li><span>AI Quick-Start, 2 hours with a written summary</span><b>€350</b></li>
-        <li><span>AI Opportunity Audit</span><b>from €1,500</b></li>
-        <li><span>Team workshop</span><b>from €800</b></li>
-        <li><span>Automation, one workflow</span><b>from €1,500</b></li>
-        <li><span>Dashboard</span><b>from €2,500</b></li>
-        <li><span>AI assistant</span><b>from €4,000</b></li>
-        <li><span>Custom AI app</span><b>from €8,000</b></li>
-        <li><span>Website</span><b>from €1,200</b></li>
-        <li><span>Viability study</span><b>from €1,500</b></li>
-        <li><span>AI Partner, ongoing support</span><b>from €500/month</b></li>
-      </ul>
-      <p class="fine">Under €2,000, paid when you book. Larger projects: half at the start, half on delivery.</p>
-    </div>
+<section class="section" id="prices">
+  <div class="wrap">
+    <header class="sec-head split reveal">
+      <p class="kicker">Pricing</p>
+      <h2>Prices, <em>out loud.</em></h2>
+      <p class="sec-lead">Every project has a fixed price, agreed before we start. These are starting points, excluding VAT.</p>
+    </header>
 
-    <aside class="founding" id="founding" aria-labelledby="founding-title">
-      <h2 id="founding-title">Five founding clients.</h2>
-      <p>We're opening Praxis Minds with five founding clients. You get 30 to 50% off your first project. In return, we ask for honest feedback and permission to write up the results.</p>
-      <ol class="slots" data-taken="0" aria-label="Founding client places">
-        <li>Open</li><li>Open</li><li>Open</li><li>Open</li><li>Open</li>
-      </ol>
-      <p class="slots-count" id="slots-count">5 of 5 places open</p>
-      <p class="pen founding-note">the first five to sign get it</p>
-      <a class="btn" href="#contact">Ask about a founding place</a>
-    </aside>
+    <div class="pricing">
+      <div class="price-card reveal">
+        <ul class="pricelist">
+          <li><span>AI Quick-Start <small>2 hours with a written summary</small></span><b>€350</b></li>
+          <li><span>AI Opportunity Audit</span><b><small>from</small> €1,500</b></li>
+          <li><span>Team workshop</span><b><small>from</small> €800</b></li>
+          <li><span>Automation <small>one workflow</small></span><b><small>from</small> €1,500</b></li>
+          <li><span>Dashboard</span><b><small>from</small> €2,500</b></li>
+          <li><span>AI assistant</span><b><small>from</small> €4,000</b></li>
+          <li><span>Custom AI app</span><b><small>from</small> €8,000</b></li>
+          <li><span>Website</span><b><small>from</small> €1,200</b></li>
+          <li><span>Viability study</span><b><small>from</small> €1,500</b></li>
+          <li><span>AI Partner <small>ongoing support</small></span><b><small>from</small> €500/month</b></li>
+        </ul>
+        <p class="fine">Under €2,000, paid when you book. Larger projects: half at the start, half on delivery.</p>
+      </div>
+
+      <aside class="founding reveal" id="founding" aria-labelledby="founding-title">
+        <p class="founding-tag"><span class="badge-dot"></span>The first five to sign get it</p>
+        <h2 id="founding-title">Five founding clients.</h2>
+        <p>We're opening Praxis Minds with five founding clients. You get 30 to 50% off your first project. In return, we ask for honest feedback and permission to write up the results.</p>
+        <ol class="slots" data-taken="0" aria-label="Founding client places">
+          <li>Open</li><li>Open</li><li>Open</li><li>Open</li><li>Open</li>
+        </ol>
+        <p class="slots-count" id="slots-count">5 of 5 places open</p>
+        <a class="btn btn-accent" href="#contact">Ask about a founding place <svg class="ic arr" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </aside>
+    </div>
   </div>
 </section>
 
 <!-- FAQ -->
-<section class="section wrap" id="faq">
-  <div class="faq-grid">
-    <header class="sec-head">
-      <p class="eyebrow">Questions</p>
-      <h2>What people ask us first.</h2>
+<section class="section band" id="faq">
+  <div class="wrap faq-grid">
+    <header class="sec-head faq-side reveal">
+      <p class="kicker">Questions</p>
+      <h2>What people <em>ask us first.</em></h2>
+      <p class="sec-lead">Something else on your mind? Ask us on a free <a href="#contact">20-minute call</a>.</p>
     </header>
-    <div class="faq">
+    <div class="faq reveal">
       <details>
-        <summary>Is our data safe?</summary>
+        <summary>Is our data safe?<span class="faq-icon" aria-hidden="true"></span></summary>
         <p>We use business versions of AI services, whose terms say your data isn't used to train their models. Where we can, tools run in your own accounts, so you keep control of the data and the bill. When personal data is involved, we sign a data processing agreement with you.</p>
       </details>
       <details>
-        <summary>Do we need technical staff?</summary>
+        <summary>Do we need technical staff?<span class="faq-icon" aria-hidden="true"></span></summary>
         <p>No. We build, connect and maintain the tools. Your team needs to know their own work, and we teach them the rest.</p>
       </details>
       <details>
-        <summary>What happens when the AI gets something wrong?</summary>
+        <summary>What happens when the AI gets something wrong?<span class="faq-icon" aria-hidden="true"></span></summary>
         <p>It will, sometimes. Every tool we build flags uncertain cases for a person and keeps your team in charge of anything important. Before launch, we test on your real documents and show you the accuracy.</p>
       </details>
       <details>
-        <summary>How soon will we see results?</summary>
+        <summary>How soon will we see results?<span class="faq-icon" aria-hidden="true"></span></summary>
         <p>Quick wins usually come in the first week or two. Most automations go live within 2 to 4 weeks.</p>
       </details>
       <details>
-        <summary>Will this replace people?</summary>
+        <summary>Will this replace people?<span class="faq-icon" aria-hidden="true"></span></summary>
         <p>We design tools to take over tasks. The time goes back to your team, for customers, growth and the work that kept getting postponed. We also train the people who use the tools.</p>
       </details>
       <details>
-        <summary>Which AI do you use?</summary>
+        <summary>Which AI do you use?<span class="faq-icon" aria-hidden="true"></span></summary>
         <p>Mostly Claude, from Anthropic, because it handles documents and writing reliably. We pick tools to fit the job, and we can work inside Microsoft, Google or AWS environments if your company requires it.</p>
       </details>
     </div>
@@ -426,61 +507,104 @@
 </section>
 
 <!-- CONTACT -->
-<section class="panel" id="contact">
-  <div class="wrap panel-grid">
-    <div class="panel-copy">
-      <h2>Tell us the task everyone dreads.</h2>
-      <p>Twenty minutes, at no cost. We'll tell you plainly whether AI can help and what it would take.</p>
-      <div class="email-line">
-        <p class="email-label">Prefer email?</p>
-        <p><span class="email" id="email-address">hello@praxisminds.com</span> <button type="button" class="copy-btn" id="copy-email">Copy</button></p>
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="contact-panel reveal">
+      <div class="contact-glow" aria-hidden="true"><span></span><span></span></div>
+      <div class="contact-copy">
+        <p class="kicker">Free 20-minute AI check</p>
+        <h2>Tell us the task <em>everyone dreads.</em></h2>
+        <p>Twenty minutes, at no cost. We'll tell you plainly whether AI can help and what it would take.</p>
+        <ol class="next-steps">
+          <li><b>1</b>Describe the task in the form.</li>
+          <li><b>2</b>We reply within one working day.</li>
+          <li><b>3</b>We talk it through on a short call.</li>
+        </ol>
+        <div class="email-line">
+          <p class="email-label">Prefer email?</p>
+          <p><span class="email" id="email-address">hello@praxisminds.com</span> <button type="button" class="copy-btn" id="copy-email">Copy</button></p>
+        </div>
       </div>
+
+      <form class="contact-form" id="contact-form" data-endpoint="" data-email="hello@praxisminds.com" novalidate>
+        <div class="field-row two">
+          <div class="field">
+            <label for="f-name">Your name</label>
+            <input id="f-name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="f-company">Company</label>
+            <input id="f-company" name="company" type="text" autocomplete="organization">
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-email">Email</label>
+          <input id="f-email" name="email" type="email" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="f-task">The task, and roughly how often it happens</label>
+          <textarea id="f-task" name="task" rows="4" required placeholder="For example: we type about 300 supplier invoices a month into our accounting system."></textarea>
+        </div>
+        <p class="form-error" id="form-error" hidden></p>
+        <button class="btn btn-lg" type="submit">Send</button>
+
+        <div class="form-result" id="form-sent" hidden>
+          <p><strong>Thanks, we've got it.</strong> We'll reply within one working day.</p>
+        </div>
+        <div class="form-result" id="form-fallback" hidden>
+          <p><strong>Your message is ready.</strong> Online sending isn't switched on yet. Copy the message below and email it to <span class="email">hello@praxisminds.com</span>.</p>
+          <label class="sr-only" for="f-composed">Your message</label>
+          <textarea id="f-composed" rows="6" readonly></textarea>
+          <button type="button" class="copy-btn" id="copy-message">Copy message</button>
+        </div>
+      </form>
     </div>
-
-    <form class="contact-form" id="contact-form" data-endpoint="" data-email="hello@praxisminds.com" novalidate>
-      <div class="field">
-        <label for="f-name">Your name</label>
-        <input id="f-name" name="name" type="text" autocomplete="name" required>
-      </div>
-      <div class="field">
-        <label for="f-company">Company</label>
-        <input id="f-company" name="company" type="text" autocomplete="organization">
-      </div>
-      <div class="field">
-        <label for="f-email">Email</label>
-        <input id="f-email" name="email" type="email" autocomplete="email" required>
-      </div>
-      <div class="field">
-        <label for="f-task">The task, and roughly how often it happens</label>
-        <textarea id="f-task" name="task" rows="4" required placeholder="For example: we type about 300 supplier invoices a month into our accounting system."></textarea>
-      </div>
-      <p class="form-error" id="form-error" hidden></p>
-      <button class="btn btn-marker" type="submit">Send</button>
-
-      <div class="form-result" id="form-sent" hidden>
-        <p><strong>Thanks, we've got it.</strong> We'll reply within one working day.</p>
-      </div>
-      <div class="form-result" id="form-fallback" hidden>
-        <p><strong>Your message is ready.</strong> Online sending isn't switched on yet. Copy the message below and email it to <span class="email">hello@praxisminds.com</span>.</p>
-        <label class="sr-only" for="f-composed">Your message</label>
-        <textarea id="f-composed" rows="6" readonly></textarea>
-        <button type="button" class="copy-btn" id="copy-message">Copy message</button>
-      </div>
-    </form>
   </div>
 </section>
 
 </main>
 
-<footer class="site-foot wrap">
-  <p class="foot-brand">Praxis Minds</p>
-  <p>AI, put into practice.</p>
-  <ul class="foot-links">
-    <li><span>hello@praxisminds.com</span></li>
-    <li><a href="https://www.linkedin.com/" rel="noopener">LinkedIn</a></li>
-    <li><a href="privacy.html">Privacy</a></li>
-  </ul>
-  <p class="fine">© <span id="year">2026</span> Praxis Minds. Prices exclude VAT.</p>
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="#top" aria-label="Praxis Minds, back to top">
+          <svg class="logo" viewBox="0 0 40 40" aria-hidden="true"><rect class="logo-stem" x="8" y="7" width="8" height="26" rx="4"/><path class="logo-bowl" d="M19 7h3a9 9 0 0 1 0 18h-3z"/></svg>
+          <span class="brand-name">Praxis<span> Minds</span></span>
+        </a>
+        <p><em>Práxis</em> is Greek for action. We help small and mid-sized companies put AI to work.</p>
+      </div>
+      <div class="foot-col">
+        <p class="foot-title">Explore</p>
+        <ul>
+          <li><a href="#method">How we work</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#calculator">Calculator</a></li>
+          <li><a href="#prices">Pricing</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <p class="foot-title">Contact</p>
+        <ul>
+          <li><span>hello@praxisminds.com</span></li>
+          <li><a href="#contact">Book a 20-min call</a></li>
+          <li><a href="https://www.linkedin.com/" rel="noopener">LinkedIn</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <p class="foot-title">More</p>
+        <ul>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="pt/index.html" hreflang="pt-PT" lang="pt-PT">Português</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>© <span id="year">2026</span> Praxis Minds. Prices exclude VAT.</p>
+      <p>AI, put into practice.</p>
+    </div>
+  </div>
 </footer>
 
 <script src="assets/main.js" defer></script>

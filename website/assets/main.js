@@ -1,4 +1,5 @@
-/* Praxis Minds website: week planner, task calculator, contact form. No dependencies.
+/* Praxis Minds website: header and menu, scroll reveals, service tabs, the example week,
+   the task calculator, and the contact form. No dependencies.
    One script for every language: page text lives in the HTML, and the few strings the
    script writes itself are in STRINGS below. The language comes from data-locale on <main>. */
 (function () {
@@ -48,6 +49,7 @@
   var T = STRINGS[locale.slice(0, 2).toLowerCase()] || STRINGS.en;
 
   var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var hasIO = "IntersectionObserver" in window;
 
   function fmtDuration(hours) {
     var total = Math.round(hours * 60);
@@ -55,7 +57,8 @@
     var m = total % 60;
     if (h && m) return h + " h " + m + " min";
     if (h) return h + " h";
-    return m + " min";
+    if (m) return m + " min";
+    return "0 h";
   }
 
   function fmtNumber(n) {
@@ -70,45 +73,259 @@
     return n.toLocaleString(T.numberLocale, { style: "currency", currency: "EUR", minimumFractionDigits: 0, maximumFractionDigits: 0 });
   }
 
-  /* ---------- Week planner ---------- */
+  /* Counts a number up or down to its new value. el._v remembers the last value shown. */
+  function tween(el, to, format, done) {
+    var from = typeof el._v === "number" ? el._v : to;
+    el._v = to;
+    if (el._raf) cancelAnimationFrame(el._raf);
+    if (reduceMotion || from === to) {
+      el.textContent = format(to);
+      if (done) done();
+      return;
+    }
+    var start = null;
+    var duration = 650;
+    function step(now) {
+      if (start === null) start = now;
+      var p = Math.min(1, (now - start) / duration);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = format(p < 1 ? from + (to - from) * eased : to); // end on the exact value
+      if (p < 1) el._raf = requestAnimationFrame(step);
+      else { el._raf = null; if (done) done(); }
+    }
+    el._raf = requestAnimationFrame(step);
+  }
+
+  /* ---------- Scroll reveals ----------
+     Elements with .reveal, and the children of [data-stagger], fade up as they come on screen.
+     The hiding CSS only applies once this runs, so nothing stays hidden if the script fails. */
+  (function () {
+    var targets = [];
+    document.querySelectorAll("[data-stagger]").forEach(function (parent) {
+      Array.prototype.forEach.call(parent.children, function (child, i) {
+        child.style.setProperty("--rd", i);
+        targets.push(child);
+      });
+    });
+    document.querySelectorAll(".reveal").forEach(function (el) { targets.push(el); });
+    if (reduceMotion || !hasIO || !targets.length) return;
+
+    document.documentElement.classList.add("reveal-on");
+
+    function finish(el) {
+      el.classList.remove("is-visible");
+      el.classList.add("is-done");
+    }
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        io.unobserve(el);
+        el.classList.add("is-visible");
+        var delay = (parseFloat(el.style.getPropertyValue("--rd")) || 0) * 90;
+        // Hand the element back to its own hover transitions once it has arrived.
+        setTimeout(function () { finish(el); }, 1000 + delay);
+      });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.12 });
+    targets.forEach(function (el) { io.observe(el); });
+  })();
+
+  /* ---------- Header: background on scroll, mobile menu, current section ---------- */
+  var head = document.getElementById("site-head");
+  if (head) {
+    var ticking = false;
+    function onScroll() {
+      head.classList.toggle("is-scrolled", window.scrollY > 8);
+      ticking = false;
+    }
+    window.addEventListener("scroll", function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
+    }, { passive: true });
+    onScroll();
+
+    var menuBtn = head.querySelector(".menu-btn");
+    var nav = document.getElementById("site-nav");
+    if (menuBtn && nav) {
+      function setMenu(open) {
+        head.classList.toggle("nav-open", open);
+        menuBtn.setAttribute("aria-expanded", String(open));
+      }
+      menuBtn.addEventListener("click", function () { setMenu(!head.classList.contains("nav-open")); });
+      nav.addEventListener("click", function (e) { if (e.target.closest("a")) setMenu(false); });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && head.classList.contains("nav-open")) { setMenu(false); menuBtn.focus(); }
+      });
+      document.addEventListener("click", function (e) {
+        if (head.classList.contains("nav-open") && !head.contains(e.target)) setMenu(false);
+      });
+      window.addEventListener("resize", function () { if (window.innerWidth > 900) setMenu(false); });
+    }
+
+    if (nav && hasIO) {
+      var links = {};
+      nav.querySelectorAll('a[href^="#"]:not(.btn)').forEach(function (a) { links[a.getAttribute("href").slice(1)] = a; });
+      var spy = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          var link = links[entry.target.id];
+          if (!link) return;
+          if (entry.isIntersecting) {
+            Object.keys(links).forEach(function (k) { links[k].classList.toggle("is-active", links[k] === link); });
+          } else if (link.classList.contains("is-active")) {
+            link.classList.remove("is-active");
+          }
+        });
+      }, { rootMargin: "-40% 0px -55% 0px" });
+      Object.keys(links).forEach(function (id) {
+        var section = document.getElementById(id);
+        if (section) spy.observe(section);
+      });
+    }
+  }
+
+  /* ---------- Example week ----------
+     Each .wk-row carries --now (hours today) and --after (hours a person still spends checking).
+     The totals are added up here, so the rows in the HTML are the only thing to edit. */
   var week = document.getElementById("week");
   if (week) {
     var btnNow = document.getElementById("week-now");
     var btnAfter = document.getElementById("week-after");
     var statBusy = document.getElementById("stat-busy");
     var statBack = document.getElementById("stat-back");
+    var rows = [];
     var busyNow = 0;
     var busyAfter = 0;
 
-    week.querySelectorAll(".blk.busy").forEach(function (el) {
-      busyNow += parseFloat(el.style.getPropertyValue("--d")) || 0;
-      busyAfter += parseFloat(el.style.getPropertyValue("--a")) || 0;
+    week.querySelectorAll(".wk-row").forEach(function (row) {
+      var now = parseFloat(row.style.getPropertyValue("--now")) || 0;
+      var after = parseFloat(row.style.getPropertyValue("--after")) || 0;
+      busyNow += now;
+      busyAfter += after;
+      rows.push({ time: row.querySelector(".wk-time"), now: now, after: after });
     });
 
+    function fmtSteps(h) { return fmtDuration(Math.round(h * 12) / 12); } // 5-minute steps while counting
     var userTouched = false;
 
     function setWeek(after) {
       week.classList.toggle("is-after", after);
       btnNow.setAttribute("aria-pressed", String(!after));
       btnAfter.setAttribute("aria-pressed", String(after));
-      statBusy.textContent = fmtDuration(after ? busyAfter : busyNow);
-      statBack.textContent = after ? fmtDuration(busyNow - busyAfter) : "0 h";
+      rows.forEach(function (r) {
+        if (!r.time) return;
+        r.time.textContent = "";
+        if (after) {
+          var was = document.createElement("s");
+          was.textContent = fmtDuration(r.now);
+          r.time.appendChild(was);
+          r.time.appendChild(document.createTextNode(fmtDuration(r.after)));
+        } else {
+          r.time.textContent = fmtDuration(r.now);
+        }
+      });
+      tween(statBusy, after ? busyAfter : busyNow, fmtSteps);
+      tween(statBack, after ? busyNow - busyAfter : 0, fmtSteps);
     }
 
     btnNow.addEventListener("click", function () { userTouched = true; setWeek(false); });
     btnAfter.addEventListener("click", function () { userTouched = true; setWeek(true); });
+    statBusy._v = busyNow;
+    statBack._v = 0;
     setWeek(false);
 
-    // Play the before/after once, the first time the planner is on screen.
-    if (!reduceMotion && "IntersectionObserver" in window) {
-      var io = new IntersectionObserver(function (entries) {
+    // Draw the bars, then play the before/after once, the first time the card is on screen.
+    if (!reduceMotion && hasIO) {
+      var wio = new IntersectionObserver(function (entries) {
         if (entries.some(function (e) { return e.isIntersecting; })) {
-          io.disconnect();
-          setTimeout(function () { if (!userTouched) setWeek(true); }, 1600);
+          wio.disconnect();
+          week.classList.add("is-in");
+          setTimeout(function () { if (!userTouched) setWeek(true); }, 2200);
         }
-      }, { threshold: 0.5 });
-      io.observe(week);
+      }, { threshold: 0.4 });
+      wio.observe(week);
+    } else {
+      week.classList.add("is-in");
     }
+  }
+
+  /* ---------- Service tabs ----------
+     Without JavaScript, every panel shows one after the other. Links to a panel's id
+     (#build, #workshops, #more) open that tab. */
+  var tabList = document.querySelector('[role="tablist"]');
+  if (tabList) {
+    var tabs = Array.prototype.slice.call(tabList.querySelectorAll('[role="tab"]'));
+    var indicator = tabList.querySelector(".tab-ind");
+    var section = tabList.closest("section");
+    var panels = tabs.map(function (t) { return document.getElementById(t.getAttribute("aria-controls")); });
+
+    function placeIndicator(tab) {
+      if (!indicator || !tab) return;
+      indicator.style.width = tab.offsetWidth + "px";
+      indicator.style.transform = "translateX(" + tab.offsetLeft + "px)";
+    }
+
+    function selectTab(tab, opts) {
+      opts = opts || {};
+      tabs.forEach(function (t, i) {
+        var on = t === tab;
+        t.setAttribute("aria-selected", String(on));
+        t.tabIndex = on ? 0 : -1;
+        var panel = panels[i];
+        if (!panel) return;
+        var wasHidden = panel.hidden;
+        panel.hidden = !on;
+        if (on && wasHidden && opts.animate !== false && !reduceMotion) {
+          panel.classList.remove("is-entering");
+          void panel.offsetWidth; // restart the animation
+          panel.classList.add("is-entering");
+        }
+      });
+      placeIndicator(tab);
+      if (opts.focus) tab.focus();
+      if (tab.scrollIntoView && tabList.scrollWidth > tabList.clientWidth) {
+        tabList.scrollTo({ left: tab.offsetLeft - 16, behavior: reduceMotion ? "auto" : "smooth" });
+      }
+    }
+
+    tabs.forEach(function (tab, i) {
+      tab.addEventListener("click", function () { selectTab(tab); });
+      tab.addEventListener("keydown", function (e) {
+        var next = null;
+        if (e.key === "ArrowRight") next = tabs[(i + 1) % tabs.length];
+        else if (e.key === "ArrowLeft") next = tabs[(i - 1 + tabs.length) % tabs.length];
+        else if (e.key === "Home") next = tabs[0];
+        else if (e.key === "End") next = tabs[tabs.length - 1];
+        if (next) { e.preventDefault(); selectTab(next, { focus: true }); }
+      });
+    });
+
+    function tabForHash(hash) {
+      var id = (hash || "").replace("#", "");
+      for (var i = 0; i < panels.length; i++) { if (panels[i] && panels[i].id === id) return tabs[i]; }
+      return null;
+    }
+
+    if (section) section.classList.add("tabs-ready");
+    var initial = tabForHash(location.hash) || tabs.filter(function (t) { return t.getAttribute("aria-selected") === "true"; })[0] || tabs[0];
+    selectTab(initial, { animate: false });
+    if (tabForHash(location.hash)) {
+      var target = document.getElementById(location.hash.slice(1));
+      if (target) setTimeout(function () { target.scrollIntoView(); }, 0);
+    }
+
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest && e.target.closest('a[href^="#"]');
+      var tab = a && tabForHash(a.getAttribute("href"));
+      if (tab) selectTab(tab, { animate: false });
+    });
+    window.addEventListener("hashchange", function () {
+      var tab = tabForHash(location.hash);
+      if (tab) selectTab(tab, { animate: false });
+    });
+
+    var current = function () { return tabs.filter(function (t) { return t.getAttribute("aria-selected") === "true"; })[0]; };
+    window.addEventListener("resize", function () { placeIndicator(current()); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { placeIndicator(current()); });
   }
 
   /* ---------- Task calculator ---------- */
@@ -136,20 +353,32 @@
     return isFinite(max) ? Math.min(v, max) : v;
   }
 
-  function calculate() {
-    var c = num(count), m = num(minutes), r = num(rate);
-    var hoursYear = (c * m / 60) * WEEKS_PER_YEAR;
-    var costYear = hoursYear * r;
-    var back = hoursYear * AI_SHARE;
-    var weeks = back / HOURS_PER_WORK_WEEK;
-    document.getElementById("out-hours").textContent = fmtNumber(hoursYear);
-    document.getElementById("out-cost").textContent = fmtEuro(Math.round(costYear / 10) * 10);
-    document.getElementById("out-back").textContent = fmtNumber(back);
-    document.getElementById("out-weeks").textContent = weeks < 10 ? fmtDecimal(weeks, 1) : fmtNumber(weeks);
-    lastResult = { label: task.options[task.selectedIndex].text, count: c, minutes: m, hours: hoursYear };
-  }
-
   if (task && count && minutes && rate) {
+    var outHours = document.getElementById("out-hours");
+    var outCost = document.getElementById("out-cost");
+    var outBack = document.getElementById("out-back");
+    var outWeeks = document.getElementById("out-weeks");
+    var live = outHours.closest("[aria-live]");
+    var pending = 0;
+
+    function settled() { pending -= 1; if (pending <= 0 && live) live.removeAttribute("aria-busy"); }
+
+    function calculate() {
+      var c = num(count), m = num(minutes), r = num(rate);
+      var hoursYear = (c * m / 60) * WEEKS_PER_YEAR;
+      var costYear = hoursYear * r;
+      var back = hoursYear * AI_SHARE;
+      var weeks = back / HOURS_PER_WORK_WEEK;
+      // Keep screen readers from announcing every frame of the count.
+      if (live) live.setAttribute("aria-busy", "true");
+      pending = 4;
+      tween(outHours, hoursYear, fmtNumber, settled);
+      tween(outCost, costYear, function (v) { return fmtEuro(Math.round(v / 10) * 10); }, settled);
+      tween(outBack, back, fmtNumber, settled);
+      tween(outWeeks, weeks, function (v) { return v < 10 ? fmtDecimal(v, 1) : fmtNumber(v); }, settled);
+      lastResult = { label: task.options[task.selectedIndex].text, count: c, minutes: m, hours: hoursYear };
+    }
+
     task.addEventListener("change", function () {
       var p = presets[task.value];
       if (p) { count.value = p.count; minutes.value = p.minutes; }
@@ -167,7 +396,7 @@
         var label = task.value === "other" ? T.otherTask : lastResult.label;
         var mins = lastResult.minutes % 1 ? fmtDecimal(lastResult.minutes, 1) : fmtNumber(lastResult.minutes);
         taskField.value = T.prefill(label, fmtNumber(lastResult.count), mins, fmtNumber(lastResult.hours));
-        setTimeout(function () { taskField.focus({ preventScroll: true }); }, 450);
+        setTimeout(function () { taskField.focus({ preventScroll: true }); }, 600);
       });
     }
   }
