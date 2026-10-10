@@ -30,7 +30,7 @@ Open `index.html` in a browser. Everything works locally except sending the cont
 
 ## Before you launch: checklist
 
-- [ ] **Domain and email.** The site uses `praxisminds.com` and `hello@praxisminds.com`. If yours differ, search and replace them across the whole `website` folder (both languages, `robots.txt` and `sitemap.xml`).
+- [ ] **Domain and email.** The site uses `praxisminds.com`, with `hello@praxisminds.com` on the English pages and `ola@praxisminds.com` on the Portuguese pages (set both mailboxes up, or forward `ola@` to `hello@`). If yours differ, search and replace them across the whole `website` folder (both languages, `robots.txt` and `sitemap.xml`).
 - [ ] **Contact form.** Create a free form endpoint (e.g. [Formspree](https://formspree.io)), then paste its URL into `data-endpoint=""` on the `<form id="contact-form">` in **both** `index.html` and `pt/index.html`. Each message includes a `language` field so you know which version it came from. Until then, visitors get their message ready to copy into an email, and the form never pretends a message was sent.
 - [ ] **LinkedIn.** Replace `https://www.linkedin.com/` in both footers with your company page.
 - [ ] **Booking link** *(optional).* If you use Cal.com or Calendly, point the "Book a 20-min call" buttons (`href="#contact"`) to your booking page.
