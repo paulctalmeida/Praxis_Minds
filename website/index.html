@@ -6,7 +6,12 @@
 <title>Praxis Minds | Practical AI for small and mid-sized companies</title>
 <meta name="description" content="Praxis Minds finds the work that eats your team's week, builds AI tools that take it over, and teaches your people to use them. Fixed prices, first results in weeks.">
 <link rel="canonical" href="https://praxisminds.com/">
+<link rel="alternate" hreflang="en" href="https://praxisminds.com/">
+<link rel="alternate" hreflang="pt-PT" href="https://praxisminds.com/pt/">
+<link rel="alternate" hreflang="x-default" href="https://praxisminds.com/">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="pt_PT">
 <meta property="og:title" content="Praxis Minds | AI, put into practice">
 <meta property="og:description" content="We find the work that eats your team's week, build AI tools that take it over, and teach your people to use them.">
 <meta property="og:url" content="https://praxisminds.com/">
@@ -48,10 +53,14 @@
     <a href="#workshops">Workshops</a>
     <a href="#prices">Prices</a>
   </nav>
+  <p class="lang" aria-label="Language">
+    <span class="lang-cur" aria-current="true">EN</span>
+    <a href="pt/index.html" hreflang="pt-PT" lang="pt-PT" title="Ver em português">PT</a>
+  </p>
   <a class="btn btn-small" href="#contact"><span class="long">Book a 20-min call</span><span class="short">Book a call</span></a>
 </header>
 
-<main id="main">
+<main id="main" data-locale="en">
 
 <!-- HERO: the thesis, a real week of busywork shrinking -->
 <section class="hero wrap" id="top">
@@ -101,40 +110,40 @@
 
           <div class="day" aria-label="Monday">
             <div class="blk busy" style="--s:9;--d:2;--a:.5;--i:0" title="Typing supplier invoices into the ERP"><span class="l-now"><span class="l-long">Typing supplier invoices into the ERP</span><span class="l-short">Invoices</span></span><span class="l-after">Check invoices</span></div>
-            <div class="blk freed" style="--s:9.5;--d:1.5;--i:0"><span>Customer visits</span></div>
-            <div class="blk fixed" style="--s:11.5;--d:1"><span>Team meeting</span></div>
+            <div class="blk freed" style="--s:9.5;--d:1.5;--i:0"><span class="l-long">Customer visits</span><span class="l-short">Clients</span></div>
+            <div class="blk fixed" style="--s:11.5;--d:1"><span class="l-long">Team meeting</span><span class="l-short">Meeting</span></div>
             <div class="blk busy" style="--s:14;--d:1;--a:.25;--i:1" title="Answering “where’s my order?” emails"><span class="l-now"><span class="l-long">“Where’s my order?” emails</span><span class="l-short">Order emails</span></span><span class="l-after"></span></div>
             <div class="blk freed" style="--s:14.25;--d:.75;--i:1"></div>
           </div>
 
           <div class="day" aria-label="Tuesday">
             <div class="blk busy" style="--s:9;--d:1.5;--a:.25;--i:2" title="Copying orders from email into the system"><span class="l-now"><span class="l-long">Copying orders from email into the system</span><span class="l-short">Order entry</span></span><span class="l-after"></span></div>
-            <div class="blk freed" style="--s:9.25;--d:1.25;--i:2"><span>Chase open quotes</span></div>
-            <div class="blk fixed" style="--s:11;--d:1"><span>Supplier call</span></div>
+            <div class="blk freed" style="--s:9.25;--d:1.25;--i:2"><span class="l-long">Chase open quotes</span><span class="l-short">Quotes</span></div>
+            <div class="blk fixed" style="--s:11;--d:1"><span class="l-long">Supplier call</span><span class="l-short">Call</span></div>
             <div class="blk busy" style="--s:15;--d:2;--a:.25;--i:3" title="Building the weekly sales spreadsheet"><span class="l-now"><span class="l-long">Building the weekly sales spreadsheet</span><span class="l-short">Sales report</span></span><span class="l-after"></span></div>
-            <div class="blk freed" style="--s:15.25;--d:1.75;--i:3"><span>Coach the sales team</span></div>
+            <div class="blk freed" style="--s:15.25;--d:1.75;--i:3"><span class="l-long">Coach the sales team</span><span class="l-short">Coaching</span></div>
           </div>
 
           <div class="day" aria-label="Wednesday">
             <div class="blk busy" style="--s:9;--d:2;--a:.5;--i:4" title="Typing supplier invoices into the ERP"><span class="l-now"><span class="l-long">Typing supplier invoices into the ERP</span><span class="l-short">Invoices</span></span><span class="l-after">Check invoices</span></div>
-            <div class="blk freed" style="--s:9.5;--d:1.5;--i:4"><span>Plan next quarter</span></div>
+            <div class="blk freed" style="--s:9.5;--d:1.5;--i:4"><span class="l-long">Plan next quarter</span><span class="l-short">Planning</span></div>
             <div class="blk busy" style="--s:11;--d:1;--a:.25;--i:5" title="Searching folders for the right file"><span class="l-now"><span class="l-long">Searching folders for the right file</span><span class="l-short">Searching</span></span><span class="l-after"></span></div>
             <div class="blk freed" style="--s:11.25;--d:.75;--i:5"></div>
-            <div class="blk fixed" style="--s:14;--d:1.5"><span>Site visit</span></div>
+            <div class="blk fixed" style="--s:14;--d:1.5"><span class="l-long">Site visit</span><span class="l-short">Visit</span></div>
           </div>
 
           <div class="day" aria-label="Thursday">
             <div class="blk busy" style="--s:10;--d:2;--a:.5;--i:6" title="Writing quotes from scratch"><span class="l-now"><span class="l-long">Writing quotes from scratch</span><span class="l-short">Quotes</span></span><span class="l-after">Check quotes</span></div>
-            <div class="blk freed" style="--s:10.5;--d:1.5;--i:6"><span>Train the new hire</span></div>
+            <div class="blk freed" style="--s:10.5;--d:1.5;--i:6"><span class="l-long">Train the new hire</span><span class="l-short">Training</span></div>
             <div class="blk busy" style="--s:14;--d:1;--a:.25;--i:7" title="Answering the same staff questions"><span class="l-now"><span class="l-long">Answering the same staff questions</span><span class="l-short">Questions</span></span><span class="l-after"></span></div>
             <div class="blk freed" style="--s:14.25;--d:.75;--i:7"></div>
-            <div class="blk fixed" style="--s:16;--d:1"><span>Supplier meeting</span></div>
+            <div class="blk fixed" style="--s:16;--d:1"><span class="l-long">Supplier meeting</span><span class="l-short">Meeting</span></div>
           </div>
 
           <div class="day" aria-label="Friday">
-            <div class="blk fixed" style="--s:9;--d:1"><span>Weekly planning</span></div>
+            <div class="blk fixed" style="--s:9;--d:1"><span class="l-long">Weekly planning</span><span class="l-short">Planning</span></div>
             <div class="blk busy" style="--s:14;--d:3;--a:.5;--i:8" title="Chasing numbers for the month-end report"><span class="l-now"><span class="l-long">Chasing numbers for the month-end report</span><span class="l-short">Month-end</span></span><span class="l-after">Read summary</span></div>
-            <div class="blk freed" style="--s:14.5;--d:2.5;--i:8"><span>Home early</span></div>
+            <div class="blk freed" style="--s:14.5;--d:2.5;--i:8"><span class="l-long">Home early</span><span class="l-short">Home early</span></div>
           </div>
         </div>
       </div>

@@ -209,6 +209,21 @@ h3 { font-size: var(--t-h3); line-height: 1.25; }
   text-decoration: none;
 }
 .site-nav a:hover { color: var(--pen); text-decoration: underline; }
+.site-head { flex-wrap: wrap; }
+.lang {
+  display: flex;
+  align-items: center;
+  gap: .15rem;
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  font-weight: 700;
+  letter-spacing: .06em;
+}
+.lang > * { padding: .3rem .4rem; border-radius: 2px; }
+.lang-cur { background: var(--marker); color: var(--on-marker); }
+.brand + .lang { margin-left: auto; }
+.lang a { color: var(--pen); text-decoration: none; }
+.lang a:hover { text-decoration: underline; }
 
 /* ---------- Hero ---------- */
 .hero { padding-block: clamp(2rem, 5vw, 4rem) clamp(3rem, 7vw, 5.5rem); }
@@ -420,6 +435,7 @@ h3 { font-size: var(--t-h3); line-height: 1.25; }
   color: var(--pen);
 }
 .verb { font-size: clamp(2.6rem, 5.2vw, 4.2rem); line-height: 1; }
+.steps-long .verb { font-size: clamp(2rem, 3.6vw, 3.1rem); }
 .facts { display: grid; gap: .8rem; margin-top: .5rem; }
 .facts dt, .item-meta, .io dt, .calc-label, .field label, .slot, .price, .email-label {
   font-family: var(--font-mono);
@@ -718,7 +734,9 @@ input:focus, select:focus, textarea:focus { border-color: var(--pen); outline: n
 }
 @media (max-width: 760px) {
   .site-nav { display: none; }
-  .site-head .btn-small { margin-left: auto; }
+  .site-head { gap: .75rem; }
+  .lang { margin-left: auto; }
+  .lang-cur { display: none; }
   .io { grid-template-columns: minmax(0, 1fr); }
   .field-row { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   .field-row .field:last-child { grid-column: 1 / -1; }
@@ -738,8 +756,8 @@ input:focus, select:focus, textarea:focus { border-color: var(--pen); outline: n
   .l-long { display: none; }
   .l-short { display: inline; }
   .blk { left: 2px; right: 2px; padding: 2px 3px; font-size: .62rem; }
-  .blk.freed { font-size: .95rem; padding: 3px 4px; }
-  .l-after { left: 3px; right: 3px; top: 2px; }
+  .blk.freed { font-size: .82rem; padding: 3px 4px; }
+  .l-after { display: none; } /* too narrow to read; the legend explains the blue check blocks */
   .btn { width: 100%; }
   .site-head .btn-small { width: auto; }
   .site-head .long { display: none; }

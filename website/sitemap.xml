@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://praxisminds.com/</loc></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://praxisminds.com/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://praxisminds.com/"/>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://praxisminds.com/pt/"/>
+  </url>
+  <url>
+    <loc>https://praxisminds.com/pt/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://praxisminds.com/"/>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://praxisminds.com/pt/"/>
+  </url>
   <url><loc>https://praxisminds.com/privacy.html</loc></url>
+  <url><loc>https://praxisminds.com/privacidade.html</loc></url>
 </urlset>

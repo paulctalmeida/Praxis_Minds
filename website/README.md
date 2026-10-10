@@ -4,28 +4,37 @@ A static website: plain HTML, CSS and JavaScript. There's no build step, no fram
 
 ```
 website/
-├── index.html          the homepage (all sections)
-├── privacy.html        privacy policy (draft: fill in before launch)
-├── 404.html            "page not found"
+├── index.html          the homepage in English (all sections)
+├── pt/index.html       the homepage in Portuguese (Portugal), served at /pt/
+├── privacy.html        privacy policy, English (draft: fill in before launch)
+├── privacidade.html    privacy policy, Portuguese (draft: fill in before launch)
+├── 404.html            "page not found", in both languages
 ├── robots.txt          for search engines
-├── sitemap.xml         for search engines
+├── sitemap.xml         for search engines, with language alternates
 └── assets/
     ├── styles.css      all design: colours, fonts, layout (tokens at the top)
-    ├── main.js         the example week, the calculator, the contact form
+    ├── main.js         the example week, the calculator, the contact form (both languages)
     ├── favicon.svg     browser tab icon
-    └── og-image.png    preview image for LinkedIn/WhatsApp/email shares
+    ├── og-image.png    share image, English
+    └── og-image-pt.png share image, Portuguese
 ```
+
+## Two languages
+- The English site is at `/` and the Portuguese site at `/pt/`. A switch in the header (EN | PT) links each page to its translation, and the pages tell search engines about each other (`hreflang`).
+- Both languages share the same `styles.css` and `main.js`. Page text lives in each HTML file. The few messages the script writes itself (calculator sentence, form errors, "Copied") are in the `STRINGS` table at the top of `assets/main.js`, and number formats follow the language (`€7,670` / `7670 €`, `5.4` / `5,4`).
+- The Portuguese is European Portuguese (pt-PT) with the current spelling (AO90). To target Brazil as well, the vocabulary needs adapting (equipa → equipe, ecrã → tela, ficheiro → arquivo, and so on).
+- **When you change one language, change the other.** Prices, the example week and the FAQ appear in both files.
 
 ## Preview it on your computer
 Open `index.html` in a browser. Everything works locally except sending the contact form (see below).
 
 ## Before you launch: checklist
 
-- [ ] **Domain and email.** The site uses `praxisminds.com` and `hello@praxisminds.com`. If yours differ, search and replace them in `index.html`, `privacy.html`, `robots.txt` and `sitemap.xml`.
-- [ ] **Contact form.** Create a free form endpoint (e.g. [Formspree](https://formspree.io)), then paste its URL into `data-endpoint=""` on the `<form id="contact-form">` in `index.html`. Until then, visitors get their message ready to copy into an email, and the form never pretends a message was sent.
-- [ ] **LinkedIn.** Replace `https://www.linkedin.com/` in the footer with your company page.
+- [ ] **Domain and email.** The site uses `praxisminds.com` and `hello@praxisminds.com`. If yours differ, search and replace them across the whole `website` folder (both languages, `robots.txt` and `sitemap.xml`).
+- [ ] **Contact form.** Create a free form endpoint (e.g. [Formspree](https://formspree.io)), then paste its URL into `data-endpoint=""` on the `<form id="contact-form">` in **both** `index.html` and `pt/index.html`. Each message includes a `language` field so you know which version it came from. Until then, visitors get their message ready to copy into an email, and the form never pretends a message was sent.
+- [ ] **LinkedIn.** Replace `https://www.linkedin.com/` in both footers with your company page.
 - [ ] **Booking link** *(optional).* If you use Cal.com or Calendly, point the "Book a 20-min call" buttons (`href="#contact"`) to your booking page.
-- [ ] **Privacy page.** Fill in every highlighted `[placeholder]` in `privacy.html`, remove its `noindex` line, and have it checked by a lawyer.
+- [ ] **Privacy pages.** Fill in every highlighted `[placeholder]` in `privacy.html` and `privacidade.html`, remove their `noindex` lines, and have them checked by a lawyer.
 - [ ] **Prices.** Check the prices in the *Method*, *What we build*, *Workshops*, *Also from the same desk* and *Prices* sections against [`plan/03-pricing.md`](../plan/03-pricing.md).
 - [ ] **Analytics** *(optional).* If you add analytics, prefer a cookie-free tool (e.g. Plausible) so you don't need a cookie banner, and mention it in `privacy.html`.
 

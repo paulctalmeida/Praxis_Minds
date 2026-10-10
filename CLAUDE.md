@@ -20,7 +20,7 @@ This repository is the operating manual for **Praxis Minds**, an AI consultancy 
 - `plan/`: strategy documents 01–11
 - `templates/`: proposal, SOW, discovery script, readiness assessment, viability report, workshops, outreach, kickoff, case study
 - `clients/<client-name>/`: one folder per client, copied from `clients/_template/`
-- `website/`: the company website (static HTML/CSS/JS, no build step). Design tokens are at the top of `website/assets/styles.css`; keep prices on the site in sync with `plan/03-pricing.md`. See `website/README.md`.
+- `website/`: the company website (static HTML/CSS/JS, no build step). Design tokens are at the top of `website/assets/styles.css`; keep prices on the site in sync with `plan/03-pricing.md`. The site is bilingual: English in `website/index.html`, European Portuguese (pt-PT, AO90 spelling) in `website/pt/index.html`. Any content change goes into both. See `website/README.md`.
 
 ## How to work in this repo
 - When creating client documents, **start from the matching file in `templates/`** and save the result in `clients/<client-name>/`.

@@ -1,6 +1,51 @@
-/* Praxis Minds website: week planner, task calculator, contact form. No dependencies. */
+/* Praxis Minds website: week planner, task calculator, contact form. No dependencies.
+   One script for every language: page text lives in the HTML, and the few strings the
+   script writes itself are in STRINGS below. The language comes from data-locale on <main>. */
 (function () {
   "use strict";
+
+  var STRINGS = {
+    en: {
+      numberLocale: "en-GB",
+      otherTask: "A task",
+      prefill: function (label, count, minutes, hours) {
+        return label + ": about " + count + " a week, " + minutes + " minutes each (roughly " + hours + " hours a year).";
+      },
+      copied: "Copied",
+      selectAndCopy: "Select and copy",
+      composeLabels: { name: "Name", company: "Company", email: "Email", task: "The task" },
+      missing: { name: "your name", email: "a valid email address", task: "the task" },
+      and: " and ",
+      pleaseAdd: function (list) { return "Please add " + list + "."; },
+      sending: "Sending…",
+      send: "Send",
+      taken: "Taken",
+      placesOpen: function (open, total) { return open + " of " + total + " places open"; },
+      allTaken: "All founding places are taken"
+    },
+    pt: {
+      numberLocale: "pt-PT",
+      otherTask: "Uma tarefa",
+      prefill: function (label, count, minutes, hours) {
+        return label + ": cerca de " + count + " por semana, " + minutes + " minutos de cada vez (aproximadamente " + hours + " horas por ano).";
+      },
+      copied: "Copiado",
+      selectAndCopy: "Selecione e copie",
+      composeLabels: { name: "Nome", company: "Empresa", email: "Email", task: "A tarefa" },
+      missing: { name: "o seu nome", email: "um email válido", task: "a tarefa" },
+      and: " e ",
+      pleaseAdd: function (list) { return "Por favor, indique " + list + "."; },
+      sending: "A enviar…",
+      send: "Enviar",
+      taken: "Ocupado",
+      placesOpen: function (open, total) { return open + " de " + total + " lugares livres"; },
+      allTaken: "Todos os lugares de fundador estão ocupados"
+    }
+  };
+
+  var localeEl = document.querySelector("[data-locale]");
+  var locale = (localeEl && localeEl.getAttribute("data-locale")) || document.documentElement.lang || "en";
+  var T = STRINGS[locale.slice(0, 2).toLowerCase()] || STRINGS.en;
 
   var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -14,7 +59,15 @@
   }
 
   function fmtNumber(n) {
-    return Math.round(n).toLocaleString("en-GB");
+    return Math.round(n).toLocaleString(T.numberLocale);
+  }
+
+  function fmtDecimal(n, digits) {
+    return n.toLocaleString(T.numberLocale, { minimumFractionDigits: digits, maximumFractionDigits: digits });
+  }
+
+  function fmtEuro(n) {
+    return n.toLocaleString(T.numberLocale, { style: "currency", currency: "EUR", minimumFractionDigits: 0, maximumFractionDigits: 0 });
   }
 
   /* ---------- Week planner ---------- */
@@ -90,9 +143,9 @@
     var back = hoursYear * AI_SHARE;
     var weeks = back / HOURS_PER_WORK_WEEK;
     document.getElementById("out-hours").textContent = fmtNumber(hoursYear);
-    document.getElementById("out-cost").textContent = "€" + fmtNumber(Math.round(costYear / 10) * 10);
+    document.getElementById("out-cost").textContent = fmtEuro(Math.round(costYear / 10) * 10);
     document.getElementById("out-back").textContent = fmtNumber(back);
-    document.getElementById("out-weeks").textContent = weeks < 10 ? weeks.toFixed(1) : fmtNumber(weeks);
+    document.getElementById("out-weeks").textContent = weeks < 10 ? fmtDecimal(weeks, 1) : fmtNumber(weeks);
     lastResult = { label: task.options[task.selectedIndex].text, count: c, minutes: m, hours: hoursYear };
   }
 
@@ -111,9 +164,9 @@
     if (talk && taskField) {
       talk.addEventListener("click", function () {
         if (!lastResult) return;
-        var label = task.value === "other" ? "A task" : lastResult.label;
-        taskField.value = label + ": about " + fmtNumber(lastResult.count) + " a week, " +
-          lastResult.minutes + " minutes each (roughly " + fmtNumber(lastResult.hours) + " hours a year).";
+        var label = task.value === "other" ? T.otherTask : lastResult.label;
+        var mins = lastResult.minutes % 1 ? fmtDecimal(lastResult.minutes, 1) : fmtNumber(lastResult.minutes);
+        taskField.value = T.prefill(label, fmtNumber(lastResult.count), mins, fmtNumber(lastResult.hours));
         setTimeout(function () { taskField.focus({ preventScroll: true }); }, 450);
       });
     }
@@ -123,7 +176,7 @@
   function copyText(text, button, sourceEl) {
     var original = button.textContent;
     function done(ok) {
-      button.textContent = ok ? "Copied" : "Select and copy";
+      button.textContent = ok ? T.copied : T.selectAndCopy;
       setTimeout(function () { button.textContent = original; }, 1800);
     }
     function selectFallback() {
@@ -163,8 +216,9 @@
     var copyMessage = document.getElementById("copy-message");
 
     function compose(data) {
-      return "Name: " + data.name + "\nCompany: " + (data.company || "-") + "\nEmail: " + data.email +
-        "\n\nThe task:\n" + data.task;
+      var L = T.composeLabels;
+      return L.name + ": " + data.name + "\n" + L.company + ": " + (data.company || "-") + "\n" +
+        L.email + ": " + data.email + "\n\n" + L.task + ":\n" + data.task;
     }
 
     function showFallback(data) {
@@ -183,14 +237,14 @@
         task: form.elements.task.value.trim()
       };
       var missing = [];
-      if (!data.name) missing.push("your name");
-      if (!data.email || !form.elements.email.checkValidity()) missing.push("a valid email address");
-      if (!data.task) missing.push("the task");
+      if (!data.name) missing.push(T.missing.name);
+      if (!data.email || !form.elements.email.checkValidity()) missing.push(T.missing.email);
+      if (!data.task) missing.push(T.missing.task);
       if (missing.length) {
         var list = missing.length > 1
-          ? missing.slice(0, -1).join(", ") + " and " + missing[missing.length - 1]
+          ? missing.slice(0, -1).join(", ") + T.and + missing[missing.length - 1]
           : missing[0];
-        errorEl.textContent = "Please add " + list + ".";
+        errorEl.textContent = T.pleaseAdd(list);
         errorEl.hidden = false;
         return;
       }
@@ -200,11 +254,11 @@
 
       var button = form.querySelector("button[type=submit]");
       button.disabled = true;
-      button.textContent = "Sending…";
+      button.textContent = T.sending;
       fetch(endpoint, {
         method: "POST",
         headers: { "Accept": "application/json", "Content-Type": "application/json" },
-        body: JSON.stringify(data)
+        body: JSON.stringify(Object.assign({ language: locale }, data))
       }).then(function (res) {
         if (!res.ok) throw new Error("HTTP " + res.status);
         form.reset();
@@ -214,7 +268,7 @@
         showFallback(data);
       }).then(function () {
         button.disabled = false;
-        button.textContent = "Send";
+        button.textContent = T.send;
       });
     });
 
@@ -229,12 +283,12 @@
     var taken = Math.max(0, Math.min(5, parseInt(slots.getAttribute("data-taken"), 10) || 0));
     var items = slots.querySelectorAll("li");
     items.forEach(function (li, i) {
-      if (i < taken) { li.classList.add("taken"); li.textContent = "Taken"; }
+      if (i < taken) { li.classList.add("taken"); li.textContent = T.taken; }
     });
     var countEl = document.getElementById("slots-count");
     if (countEl) {
       var open = items.length - taken;
-      countEl.textContent = open > 0 ? open + " of " + items.length + " places open" : "All founding places are taken";
+      countEl.textContent = open > 0 ? T.placesOpen(open, items.length) : T.allTaken;
     }
   }
 
