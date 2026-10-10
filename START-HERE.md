@@ -58,7 +58,8 @@ So for the first 6 months:
 
 Your first portfolio is **your own business and demos.** Every piece below is also something you'll sell.
 
-- [ ] **Website:** build praxisminds.com with Claude Code (sitemap and copy outline in [05 – Sales & Marketing](plan/05-go-to-market.md#8-the-praxis-minds-website)). This is portfolio piece #1 for the website service.
+- [x] **Website built:** see [`website/`](website/). This is portfolio piece #1 for the website service.
+- [ ] **Website live:** work through the launch checklist in [`website/README.md`](website/README.md) (domain, email, contact form, privacy page), then deploy.
 - [ ] **Demo app #1, "Document → Data":** an AI tool that reads invoices, orders, or forms and extracts the data into a spreadsheet. Nearly every SME has this pain.
 - [ ] **Demo app #2, "Company Knowledge Assistant":** a chat assistant that answers questions from a company's own documents (manuals, policies, FAQs).
 - [ ] **Demo #3, "Live KPI Dashboard":** a dashboard built from sample sales and operations data, with an AI-written weekly summary.

@@ -80,6 +80,9 @@ Ready to copy for each client:
 [Project kickoff checklist](templates/project-kickoff-checklist.md) ·
 [Case study](templates/case-study-template.md)
 
+### Website (`website/`)
+The Praxis Minds website: a static site with no build step, ready to deploy. Launch checklist and hosting options are in [`website/README.md`](website/README.md).
+
 ### Clients (`clients/`)
 One folder per client, created from [`clients/_template/`](clients/_template/). See the [privacy note](clients/README.md) before storing client data here.
 
