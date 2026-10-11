@@ -13,12 +13,12 @@
   --muted: #5B6B68;       /* captions, labels */
   --line: #E2DFD7;
   --line-strong: #CBC7BC;
-  --brand: #0D5C55;       /* deep teal: buttons, links, the logo stem */
+  --brand: #0D5C55;       /* deep teal: buttons, links, the logo */
   --brand-hover: #094A44;
   --on-brand: #FFFFFF;
   --brand-ink: #0D5C55;   /* teal used as text */
   --brand-soft: #E0EEEA;
-  --accent: #EF6C4D;      /* coral: time back, highlights, the logo bowl */
+  --accent: #EF6C4D;      /* coral: time back, highlights */
   --on-accent: #1E0F0A;
   --accent-ink: #B4442B;  /* coral used as text on light surfaces */
   --accent-soft: #FCE7DF;
@@ -39,6 +39,7 @@
 
   --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   --font-serif: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+  --font-logo: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif; /* the name in the logo only */
 
   --t-hero: clamp(2.7rem, 6vw, 5.1rem);
   --t-h2: clamp(2rem, 3.9vw, 3.2rem);
@@ -233,25 +234,35 @@ h1 em, h2 em {
 .link-arrow::after { content: "→"; transition: transform .25s var(--ease); }
 .link-arrow:hover::after { transform: translateX(3px); }
 
-/* ---------- Logo ---------- */
+/* ---------- Logo ----------
+   A monoline brain that is also a speech bubble, with an infinity knot inside.
+   The name is set in Bodoni Moda capitals (loaded only for these letters). */
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: .6rem;
+  gap: .7rem;
   color: var(--ink);
   text-decoration: none;
-  font-size: 1.18rem;
-  font-weight: 750;
-  letter-spacing: -.03em;
   white-space: nowrap;
 }
-.brand-name span { font-weight: 450; color: var(--muted); }
-.logo { width: 34px; height: 34px; flex: none; overflow: visible; }
-.logo-stem { fill: var(--brand); }
-.logo-bowl { fill: var(--accent); transform-box: fill-box; transform-origin: left center; transition: transform .45s var(--ease); }
-.brand:hover .logo-bowl { transform: translateX(2px) rotate(-8deg); }
-.site-head .logo-bowl { animation: bowl-in .9s var(--ease) .15s both; }
-@keyframes bowl-in { from { opacity: 0; transform: translateX(-7px) scale(.6); } }
+.brand-name {
+  font-family: var(--font-logo);
+  font-optical-sizing: auto;
+  font-size: 1.12rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+.logo { width: 46px; height: 39px; flex: none; overflow: visible; }
+.logo path { stroke: var(--brand); transition: stroke .35s ease; }
+.brand:hover .logo path:nth-child(2) { stroke: var(--accent); } /* the knot's long sweep warms to coral */
+/* the header logo draws itself once on load: outline, then the knot */
+.site-head .logo path { stroke-dasharray: 1; animation: logo-draw 1.5s var(--ease-io) both; }
+.site-head .logo path:nth-child(2) { animation-delay: .35s; }
+.site-head .logo path:nth-child(3) { animation-delay: .55s; animation-duration: .9s; }
+.site-head .logo path:nth-child(4) { animation-delay: .75s; animation-duration: .6s; }
+@keyframes logo-draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
 
 /* ---------- Header ---------- */
 .site-head {
@@ -1145,8 +1156,9 @@ input:focus, select:focus, textarea:focus { border-color: var(--brand); outline:
 @media (max-width: 640px) {
   body { font-size: 1rem; }
   .head-cta { display: none; }
-  .brand { font-size: 1.08rem; }
-  .logo { width: 30px; height: 30px; }
+  .brand { gap: .55rem; }
+  .brand-name { font-size: 1rem; letter-spacing: .08em; }
+  .logo { width: 40px; height: 34px; }
   .cta-row .btn { width: 100%; }
   .cards, .promises { grid-template-columns: minmax(0, 1fr); }
   .callout { flex-direction: column; align-items: flex-start; }

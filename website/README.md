@@ -47,9 +47,9 @@ Open `index.html` in a browser. Everything works locally except sending the cont
 | Services | One section with three tabs: *Tools we build* (`#build`), *Workshops* (`#workshops`) and *Business documents* (`#more`). Each tab is a `.tab-panel` holding `.card` items. Links to `#build`, `#workshops` or `#more` open that tab. Without JavaScript, all three show one after the other. |
 | Calculator tasks | The `<select id="calc-task">` options in `index.html` and the matching `presets` in `assets/main.js`. Assumptions (46 weeks, 70%, 40-hour week) are at the top of the calculator code. |
 | Colours | The tokens at the top of `assets/styles.css`: light theme first, dark theme below. Brand: deep teal `#0D5C55`, coral `#EF6C4D`, dark panels `#0B2724`, page `#F7F6F2`. |
-| Fonts | Plus Jakarta Sans (everything) and Instrument Serif italic (one accent word per headline, inside `<em>`), both from Google Fonts |
+| Fonts | Plus Jakarta Sans (everything), Instrument Serif italic (one accent word per headline, inside `<em>`), and Bodoni Moda for the name in the logo only (the font link loads just those letters). All from Google Fonts |
 | Icons | Inline SVG symbols at the top of each HTML page, used as `<svg class="ic"><use href="#i-name"/></svg>`. Both language files carry the same set. |
-| Logo | A "P" in two parts: a teal stem (practice) and a coral bowl (minds). It is inline SVG in each page header and footer, and in `assets/favicon.svg`. |
+| Logo | A single-line drawing: a brain that is also a speech bubble, with an infinity knot inside. Teal on the site (light teal in dark mode), with the name in Bodoni Moda capitals. It is inline SVG in each page header and footer (the header one draws itself once on load), and `assets/favicon.svg` is the white-on-teal tab icon. |
 | Share images | `assets/og-image.png` and `og-image-pt.png`, 1200 × 630. |
 
 ## Publish it (free options)
