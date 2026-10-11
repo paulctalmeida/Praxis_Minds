@@ -41,6 +41,7 @@ const from = Number(arg("from", 0));
     await page.route(/fonts\.gstatic\.com/, (route) => route.fulfill({ path: path.join(fontDir, path.basename(new URL(route.request().url()).pathname)), contentType: "font/woff2" }));
   }
 
+  page.on("pageerror", (err) => console.error("Page error:", err.message));
   const url = pathToFileURL(path.join(__dirname, "film.html")).href + `?render&lang=${lang}`;
   await page.goto(url);
   await page.waitForFunction(() => window.__ready === true, null, { timeout: 60000 });

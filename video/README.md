@@ -1,6 +1,8 @@
 # Praxis Minds: the film
 
-A 94-second animated film in the website's style (copy-paper white, ballpoint blue, highlighter yellow, planner grids, handwritten notes). It ends on the logo. There is an English and a European Portuguese version.
+A 94-second animated film built on the website design in [this artifact](https://claude.ai/artifact/9Lms1UPDn7ZYY25LgYHe4y): warm paper white, deep teal and coral, Plus Jakarta Sans with one Instrument Serif italic per headline, rounded cards, icon tiles, pill toggles and the line-drawn logo. It ends with the logo drawing itself. There is an English and a European Portuguese version, with the copy taken from the artifact's two language versions.
+
+The `website/` folder in this repo still holds the earlier blue-and-yellow design. The film follows the artifact, not that folder.
 
 ```
 video/
@@ -18,19 +20,19 @@ The film has no sound. Add music when you post it (LinkedIn, YouTube and most ed
 
 | Time | Scene | What happens |
 |---|---|---|
-| 0:00 | The week | A clock races through Monday to Friday while invoices, emails and spreadsheets pile up. "Every single week." |
-| 0:06 | The planner | The paperwork drops into the website's example admin week: 15 h 30 min of repetitive work. A cursor clicks *With Praxis*: the work shrinks to short checks and 12 h 15 min turns yellow. The camera zooms into "Home early". |
-| 0:18 | Find → Build → Teach | The three steps on highlighter yellow. |
-| 0:23 | 01 Find | The week's tasks are scanned, ranked by hours and euros, circled, and stamped "Your 90-day plan". |
-| 0:30 | 02 Build: document reader | An invoice is scanned, its fields fly into the ERP ledger, six more follow, and one is flagged for a person. |
-| 0:38 | 02 Build: inbox triage | Emails arrive, get tagged and summarised, a reply is drafted, and a person approves it. |
-| 0:45 | 02 Build: dashboard | Five systems connect, and the dashboard builds itself: KPIs count up, charts draw, the Monday summary writes itself. |
-| 0:57 | 02 Build: knowledge assistant | A staff question gets a plain answer with a link to the exact paragraph in the handbook. |
-| 1:02 | 03 Teach | The workshop timetable flips in, and an AI literacy certificate gets stamped. |
+| 0:00 | The week | A clock races from Monday to Friday while invoices, emails and spreadsheets pile up. "Every single *week.*" |
+| 0:06 | The example week | The paperwork collapses into the website's example week card: 13 h 30 min of repetitive work. A cursor flips *Now* to *With Praxis*, the teal bars shrink and the coral time back (10 h 45 min) shows. The camera zooms through the teal switch. |
+| 0:18 | Find → Build → Teach | The three steps on the dark teal band. |
+| 0:23 | 01 Find | The week's tasks are scanned, ranked by hours and euros, circled, and turned into "Your 90-day plan". |
+| 0:30 | Tools we build: document reader | An invoice is scanned, its fields fly into the ERP ledger, six more follow, and one is flagged for a person. |
+| 0:38 | Tools we build: inbox triage | Emails arrive, get tagged and summarised, a reply is drafted, and a person approves it. |
+| 0:45 | Tools we build: dashboard | A circle opens from the Send button. Five systems connect and the dashboard builds itself: KPIs count up, charts draw, the Monday summary writes itself. |
+| 0:57 | Tools we build: knowledge assistant | A staff question gets a plain answer with a link to the exact paragraph in the handbook. |
+| 1:02 | 03 Teach | The services tabs slide to *Workshops* and the workshop cards come in, with the EU AI Act note. |
 | 1:07 | Your numbers | The website's calculator fills in (307 hours, €7,670 a year, 215 hours back), then five everyday tasks add up to 1,204 hours a year, 843 of them handed back. |
-| 1:18 | House rules | Four ticks draw themselves. |
-| 1:22 | Contact | "Tell us the task everyone dreads." and the booking button. |
-| 1:26 | Logo | The nine squares draw themselves, the highlighter fills the middle row, the name and "AI, put into practice." follow. |
+| 1:18 | House rules | The five promises and "Let's talk it through." on the dark band. |
+| 1:22 | Contact | "Tell us the task *everyone dreads.*" The form fills in and is sent. The panel shrinks into the website's rounded contact card and falls away. |
+| 1:26 | Logo | The logo draws itself as one line, then PRAXIS MINDS and "AI, put into *practice.*" with the coral scribble, as in the website's hero. |
 
 ## Where the numbers come from
 
@@ -49,7 +51,7 @@ Open `film.html` in Chrome, Edge or Safari. It scales to any screen. It needs an
 
 ## Change something
 
-All the text is in the `STR` table at the top of the script in `film.html`, English first and Portuguese below. A `|` breaks a headline into lines and `*word*` gets the highlighter. Headlines shrink on their own if a translation is longer. Timings are the numbers (in seconds) inside each scene's `update` function.
+All the text is in the `STR` table at the top of the script in `film.html`, English first and Portuguese below. A `|` breaks a headline into lines and `*words*` are set in the italic serif. Headlines shrink on their own if a translation is longer. Colours and fonts are the website's tokens at the top of the file. Timings are the numbers (in seconds) inside each scene's `update` function.
 
 ## Make the MP4 again
 
@@ -61,10 +63,10 @@ npm install playwright
 npx playwright install chromium
 node render.js               # English  -> praxis-minds-film-en.mp4
 node render.js --lang pt     # Portuguese -> praxis-minds-film-pt.mp4
-node render.js --stills 14.5 # a single frame as PNG, in ./stills (for a poster)
+node render.js --stills 15   # a single frame as PNG, in ./stills (for a poster)
 ```
 
-Each version takes a few minutes. The renderer steps through the film frame by frame, so the result is smooth on any computer.
+Each version takes several minutes. The renderer steps through the film frame by frame, so the result is smooth on any computer.
 
 ## Where to use it
 - LinkedIn: the company page, the *Featured* section of your profile, and as a post (see `plan/05-go-to-market.md`).
