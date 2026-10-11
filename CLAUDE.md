@@ -21,7 +21,7 @@ This repository is the operating manual for **Praxis Minds**, an AI consultancy 
 - `templates/`: proposal, SOW, discovery script, readiness assessment, viability report, workshops, outreach, kickoff, case study
 - `clients/<client-name>/`: one folder per client, copied from `clients/_template/`
 - `website/`: the company website (static HTML/CSS/JS, no build step). Design tokens are at the top of `website/assets/styles.css`; keep prices on the site in sync with `plan/03-pricing.md`. The site is bilingual: English in `website/index.html`, European Portuguese (pt-PT, AO90 spelling) in `website/pt/index.html`. Any content change goes into both. See `website/README.md`.
-- `video/`: the 94-second animated film (`film.html`, EN and PT), its renderer and the MP4s. It follows the website design in https://claude.ai/artifact/9Lms1UPDn7ZYY25LgYHe4y (teal, coral, line-drawn logo) and reuses that site's example week and calculator numbers, so update it when those change. See `video/README.md`.
+- `video/`: the 94-second animated film (`film.html`, EN and PT), its renderer, its soundtrack (made in code by `video/audio/soundtrack.py`, so it is free to use) and the MP4s. It follows the website design in https://claude.ai/artifact/9Lms1UPDn7ZYY25LgYHe4y (teal, coral, line-drawn logo) and reuses that site's example week and calculator numbers, so update it when those change. See `video/README.md`.
 
 ## How to work in this repo
 - When creating client documents, **start from the matching file in `templates/`** and save the result in `clients/<client-name>/`.

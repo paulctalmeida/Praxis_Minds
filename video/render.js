@@ -9,6 +9,10 @@
     node render.js --lang pt             Portuguese       -> praxis-minds-film-pt.mp4
     node render.js --fps 30 --out a.mp4  other frame rate or file name
     node render.js --stills 5,20.5,90    PNG stills at those seconds (into ./stills)
+    node render.js --silent              no soundtrack
+
+  Sound: audio/soundtrack-<lang>.m4a if it exists (a version with a voice), otherwise
+  audio/soundtrack.m4a (music and effects). Make it with audio/soundtrack.py.
 
   Fonts come from Google Fonts. On a machine without internet, put the Google Fonts CSS
   (saved as fonts.css) and its font files in one folder and set FONT_DIR to that folder.
@@ -30,6 +34,8 @@ const fps = Number(arg("fps", 60));
 const out = path.resolve(arg("out", `praxis-minds-film-${lang}.mp4`));
 const stills = arg("stills", "");
 const from = Number(arg("from", 0));
+const silent = process.argv.includes("--silent") || from > 0;
+const sound = [`soundtrack-${lang}.m4a`, "soundtrack.m4a"].map((f) => path.join(__dirname, "audio", f)).find((f) => fs.existsSync(f));
 
 (async () => {
   const browser = await chromium.launch(process.env.CHROMIUM ? { executablePath: process.env.CHROMIUM } : {});
@@ -64,8 +70,10 @@ const from = Number(arg("from", 0));
     return;
   }
 
+  const audio = !silent && sound ? ["-i", sound, "-map", "0:v", "-map", "1:a", "-c:a", "copy", "-shortest"] : [];
+  if (audio.length) console.log(`Sound: ${path.relative(__dirname, sound)}`);
   const ffmpeg = spawn("ffmpeg", [
-    "-y", "-loglevel", "error", "-f", "image2pipe", "-framerate", String(fps), "-i", "-",
+    "-y", "-loglevel", "error", "-f", "image2pipe", "-framerate", String(fps), "-i", "-", ...audio,
     "-c:v", "libx264", "-preset", "slow", "-crf", "18", "-pix_fmt", "yuv420p", "-movflags", "+faststart", out
   ], { stdio: ["pipe", "inherit", "inherit"] });
   const total = Math.ceil((duration - from) * fps);

@@ -11,10 +11,33 @@ video/
 ├── praxis-minds-film-en.mp4    1920×1080, 60 fps, English
 ├── praxis-minds-film-pt.mp4    1920×1080, 60 fps, Portuguese (pt-PT)
 ├── poster-en.jpg               cover image for LinkedIn or a video player
-└── poster-pt.jpg
+├── poster-pt.jpg
+└── audio/
+    ├── soundtrack.py           makes the music and sound effects
+    └── soundtrack.m4a          the result, already inside both MP4s
 ```
 
-The film has no sound. Add music when you post it (LinkedIn, YouTube and most editors have a royalty-free library), or play it silently on a screen at events. All the information is on screen, so it works with the sound off.
+## Sound
+
+Both MP4s have a soundtrack: a light, friendly piece in D major at about 105 beats a minute, with nylon-string guitar, soft bells and marimba, a warm pad, bass and gentle percussion. It follows the picture:
+- **0:00** a clock ticks and paperwork lands on the pile, with a muted chord on each line of text.
+- **0:10** the band comes in on the click on *With Praxis*.
+- **Through the film** quiet effects mark the moments on screen: cursor clicks, page changes, the zoom, ledger rows posting, emails arriving, the dashboard opening, chat messages.
+- **1:21** the music thins out for the contact form and rises into the logo.
+- **1:26 (the logo)** the line has its own sound. An airy pen stroke follows the pen tip across the screen (left to right in stereo, higher as the line goes up) while a run of chimes climbs as it draws. Then a soft *ding* as the line closes, a note per letter of PRAXIS MINDS, a warm final chord on "AI, put into *practice.*", and a sparkle when the coral light runs along the logo.
+
+The sound is made in code by `audio/soundtrack.py` (no samples or loops), so there is no licence to buy and nothing to credit. It is mixed to -16 LUFS, the usual level for online video. All the information is on screen as well, so the film still works with the sound off, as most social video is watched.
+
+To change the music, edit `audio/soundtrack.py` and run it (Python 3 with numpy and scipy, plus ffmpeg). The times at its top follow `film.html`, so move them if a scene moves. Then add the new sound to the MP4s without rendering the picture again:
+
+```
+cd video/audio
+python3 soundtrack.py --stems          # soundtrack.m4a, plus music.wav and sfx.wav
+cd ..
+ffmpeg -i praxis-minds-film-en.mp4 -i audio/soundtrack.m4a -map 0:v -map 1:a -c copy -shortest -movflags +faststart new-en.mp4
+```
+
+**Narration (Portuguese).** `narration-pt.md` has the script and the timing of each clip. Once the voice clips are recorded, they go in at their start times, the music dips under the voice, and the mix is saved as `audio/soundtrack-pt.m4a`. The renderer uses that file for the Portuguese version when it exists.
 
 ## What it shows
 
@@ -64,9 +87,10 @@ npx playwright install chromium
 node render.js               # English  -> praxis-minds-film-en.mp4
 node render.js --lang pt     # Portuguese -> praxis-minds-film-pt.mp4
 node render.js --stills 15   # a single frame as PNG, in ./stills (for a poster)
+node render.js --silent      # without the soundtrack
 ```
 
-Each version takes several minutes. The renderer steps through the film frame by frame, so the result is smooth on any computer.
+The renderer adds `audio/soundtrack.m4a` (or `audio/soundtrack-pt.m4a` for the narrated Portuguese version, when it exists). Each version takes several minutes. The renderer steps through the film frame by frame, so the result is smooth on any computer.
 
 ## Where to use it
 - LinkedIn: the company page, the *Featured* section of your profile, and as a post (see `plan/05-go-to-market.md`).
