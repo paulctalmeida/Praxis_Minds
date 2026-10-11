@@ -39,7 +39,6 @@
 
   --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   --font-serif: "Instrument Serif", "Iowan Old Style", Georgia, serif;
-  --font-logo: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif; /* the name in the logo only */
 
   --t-hero: clamp(2.7rem, 6vw, 5.1rem);
   --t-h2: clamp(2rem, 3.9vw, 3.2rem);
@@ -236,7 +235,7 @@ h1 em, h2 em {
 
 /* ---------- Logo ----------
    A monoline brain that is also a speech bubble, with an infinity knot inside.
-   The name is set in Bodoni Moda capitals (loaded only for these letters). */
+   The name is set in tracked capitals: PRAXIS bold in ink, MINDS regular in teal. */
 .brand {
   display: inline-flex;
   align-items: center;
@@ -246,14 +245,13 @@ h1 em, h2 em {
   white-space: nowrap;
 }
 .brand-name {
-  font-family: var(--font-logo);
-  font-optical-sizing: auto;
-  font-size: 1.12rem;
-  font-weight: 600;
-  letter-spacing: .1em;
+  font-size: .95rem;
+  font-weight: 750;
+  letter-spacing: .14em;
   line-height: 1;
   text-transform: uppercase;
 }
+.brand-name span { font-weight: 550; color: var(--brand-ink); }
 .logo { width: 46px; height: 39px; flex: none; overflow: visible; }
 .logo path { stroke: var(--brand); transition: stroke .35s ease; }
 .brand:hover .logo path:nth-child(2) { stroke: var(--accent); } /* the knot's long sweep warms to coral */
@@ -1157,7 +1155,7 @@ input:focus, select:focus, textarea:focus { border-color: var(--brand); outline:
   body { font-size: 1rem; }
   .head-cta { display: none; }
   .brand { gap: .55rem; }
-  .brand-name { font-size: 1rem; letter-spacing: .08em; }
+  .brand-name { font-size: .88rem; letter-spacing: .12em; }
   .logo { width: 40px; height: 34px; }
   .cta-row .btn { width: 100%; }
   .cards, .promises { grid-template-columns: minmax(0, 1fr); }
