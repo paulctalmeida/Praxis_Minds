@@ -14,7 +14,10 @@ video/
 ├── poster-pt.jpg
 └── audio/
     ├── soundtrack.py           makes the music and sound effects
-    └── soundtrack.m4a          the result, already inside both MP4s
+    ├── soundtrack.m4a          the result, inside the English MP4
+    ├── narration-pt.mp3        the Portuguese voice (ElevenLabs)
+    ├── narrate.py              mixes the voice with the music
+    └── soundtrack-pt.m4a       the result, inside the Portuguese MP4
 ```
 
 ## Sound
@@ -37,7 +40,13 @@ cd ..
 ffmpeg -i praxis-minds-film-en.mp4 -i audio/soundtrack.m4a -map 0:v -map 1:a -c copy -shortest -movflags +faststart new-en.mp4
 ```
 
-**Narration (Portuguese).** `narration-pt.md` has the script and the timing of each clip. Once the voice clips are recorded, they go in at their start times, the music dips under the voice, and the mix is saved as `audio/soundtrack-pt.m4a`. The renderer uses that file for the Portuguese version when it exists.
+**Narration (Portuguese).** The Portuguese MP4 has a voice-over. The script and the timing of each clip are in `narration-pt.md`, and the ElevenLabs recording is `audio/narration-pt.mp3` (all 15 sentences in one file). `audio/narrate.py` cuts the recording into its 15 clips, places each one at its moment in the film, lowers the music under the voice and saves `audio/soundtrack-pt.m4a`. The renderer uses that file for the Portuguese version. If you record the voice again, update the cut points at the top of `narrate.py`, then run:
+
+```
+cd video/audio
+python3 soundtrack.py --stems
+python3 narrate.py
+```
 
 ## What it shows
 
@@ -90,7 +99,7 @@ node render.js --stills 15   # a single frame as PNG, in ./stills (for a poster)
 node render.js --silent      # without the soundtrack
 ```
 
-The renderer adds `audio/soundtrack.m4a` (or `audio/soundtrack-pt.m4a` for the narrated Portuguese version, when it exists). Each version takes several minutes. The renderer steps through the film frame by frame, so the result is smooth on any computer.
+The renderer adds `audio/soundtrack.m4a` (and `audio/soundtrack-pt.m4a`, with the voice, for the Portuguese version). Each version takes several minutes. The renderer steps through the film frame by frame, so the result is smooth on any computer.
 
 ## Where to use it
 - LinkedIn: the company page, the *Featured* section of your profile, and as a post (see `plan/05-go-to-market.md`).
